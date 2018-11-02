@@ -15,7 +15,8 @@
       "es2017",
       "dom"
     ],
-    "module": "es2015",
-    "baseUrl": "./"
+    "plugins": [
+      { "name": "tslint-language-service"}
+    ]
   }
 }
