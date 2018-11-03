@@ -20,17 +20,25 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp.old2\**" />
+    <Compile Remove="ClientApp.old\**" />
     <Compile Remove="ClientApp\dist\**" />
     <Compile Remove="ClientApp\src\app\admin\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp.old2\**" />
+    <Content Remove="ClientApp.old\**" />
     <Content Remove="ClientApp\dist\**" />
     <Content Remove="ClientApp\src\app\admin\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="ClientApp.old2\**" />
+    <EmbeddedResource Remove="ClientApp.old\**" />
     <EmbeddedResource Remove="ClientApp\dist\**" />
     <EmbeddedResource Remove="ClientApp\src\app\admin\**" />
+    <None Remove="ClientApp.old2\**" />
+    <None Remove="ClientApp.old\**" />
     <None Remove="ClientApp\dist\**" />
     <None Remove="ClientApp\src\app\admin\**" />
   </ItemGroup>
