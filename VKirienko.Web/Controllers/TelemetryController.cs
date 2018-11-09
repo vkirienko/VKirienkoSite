@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using VKirienko.Web.Data;
 using VKirienko.Web.Data.Model;
 using VKirienko.Web.ViewModel;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace VKirienko.Web.Controllers
 {
@@ -15,9 +15,11 @@ namespace VKirienko.Web.Controllers
     public class TelemetryController : ControllerBase
     {
         private readonly IMapper _mapper;
+        private IoTContext _context;
 
-        public TelemetryController(IMapper mapper)
+        public TelemetryController(IoTContext context, IMapper mapper)
         {
+            _context = context;
             _mapper = mapper;
         }
 
@@ -25,22 +27,15 @@ namespace VKirienko.Web.Controllers
         [HttpGet]
         public async Task<IEnumerable<SensorTelemetryViewModel>> Get()
         {
-            using (var db = new IoTContext())
-            {
-                return await db.SensorTelemetry.Select(t => _mapper.Map<SensorTelemetryViewModel>(t)).ToListAsync();
-            }
+            return await _context.SensorTelemetry.Select(t => _mapper.Map<SensorTelemetryViewModel>(t)).ToListAsync();
         }
 
         // POST: api/Telemetry
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] SensorTelemetryViewModel telemetry)
         {
-            using (var db = new IoTContext())
-            {
-                db.SensorTelemetry.Add(_mapper.Map<SensorTelemetry>(telemetry));
-                await db.SaveChangesAsync();
-            }
-
+            _context.SensorTelemetry.Add(_mapper.Map<SensorTelemetry>(telemetry));
+            await _context.SaveChangesAsync();
             return Ok();
         }
     }

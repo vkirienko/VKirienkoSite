@@ -7,9 +7,12 @@ namespace VKirienko.Web.Data
     {
         public DbSet<SensorTelemetry> SensorTelemetry { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public IoTContext()
         {
-            optionsBuilder.UseSqlite("Data Source=../../Databases/IoT.db");
+        }
+
+        public IoTContext(DbContextOptions<IoTContext> options) : base(options)
+        {
         }
     }
 }
