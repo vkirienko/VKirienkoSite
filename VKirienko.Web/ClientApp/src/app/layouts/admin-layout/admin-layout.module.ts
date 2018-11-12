@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
-import { DashboardComponent } from '../../dashboard/dashboard.component';
+import { DashboardOldComponent } from '../../dashboard-old/dashboard.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
 import { TableListComponent } from '../../table-list/table-list.component';
 import { TypographyComponent } from '../../typography/typography.component';
@@ -11,6 +11,11 @@ import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
+
+import { AboutComponent } from '../../about/about.component';
+import { ContactsComponent } from '../../contacts/contacts.component';
+import { DashboardComponent } from '../../dashboard/dashboard.component';
+import { ResumeComponent } from '../../resume/resume.component';
 
 import {
   MatButtonModule,
@@ -29,7 +34,7 @@ import {
     MatTooltipModule,
   ],
   declarations: [
-    DashboardComponent,
+    DashboardOldComponent,
     UserProfileComponent,
     TableListComponent,
     TypographyComponent,
@@ -37,6 +42,10 @@ import {
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
+	AboutComponent,
+	ContactsComponent,
+    DashboardComponent,
+	ResumeComponent
   ]
 })
 
