@@ -26,6 +26,10 @@ export class ContactsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initMap();
+  }
+
+  initMap() {
     var myLatlng = new google.maps.LatLng(40.852438, -73.972401);
     var mapOptions = {
       zoom: 13,
