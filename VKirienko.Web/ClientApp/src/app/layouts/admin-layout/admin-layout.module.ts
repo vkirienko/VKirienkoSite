@@ -23,6 +23,9 @@ import {
   MatRippleModule,
   MatTooltipModule,
 } from '@angular/material';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -32,6 +35,7 @@ import {
     MatRippleModule,
     MatInputModule,
     MatTooltipModule,
+    FontAwesomeModule,
   ],
   declarations: [
     DashboardOldComponent,
