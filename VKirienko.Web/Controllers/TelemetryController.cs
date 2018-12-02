@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,10 +24,27 @@ namespace VKirienko.Web.Controllers
         }
 
         // GET: api/Telemetry
-        [HttpGet]
-        public async Task<IEnumerable<SensorTelemetryViewModel>> Get()
+        [HttpGet("{days}/{samples}")]
+        public IEnumerable<SensorTelemetryViewModel> Get(int days, int samples)
         {
-            return await _context.SensorTelemetry.Select(t => _mapper.Map<SensorTelemetryViewModel>(t)).ToListAsync();
+            var today = DateTime.Now;
+            var startDate = today.AddDays(-days);
+
+            var sampleSize = Math.Round((today - startDate).TotalMinutes / samples);
+
+            return _context.SensorTelemetry
+                .Where(t => t.Date >= startDate)
+                .ToList()
+                .GroupBy(g => Math.Round((today - g.Date).TotalMinutes / sampleSize))
+                .Select(g => new SensorTelemetryViewModel
+                {
+                    Date = today.AddMinutes(-g.Key * sampleSize),
+                    Temperature = g.Average(s => s.Temperature),
+                    Humidity = g.Average(s => s.Humidity),
+                    Pressure = g.Average(s => s.Pressure),
+                    Tvoc = g.Average(s => s.Tvoc)
+                })
+                .ToList();
         }
 
         // POST: api/Telemetry
