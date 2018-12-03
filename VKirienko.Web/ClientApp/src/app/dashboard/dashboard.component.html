@@ -8,13 +8,11 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Temperature</h4>
-                        <p class="card-category">
-                            <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.
-                        </p>
+                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry.temperature | number}}</span></p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">access_time</i> updated 4 minutes ago
+                            <i class="material-icons">access_time</i> updated 1 minute ago
                         </div>
                     </div>
                 </div>
@@ -28,11 +26,11 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Humidity</h4>
-                        <p class="card-category">Last observed value</p>
+                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry.humidity | number}}</span></p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">access_time</i> campaign sent 2 days ago
+                            <i class="material-icons">access_time</i> updated 1 minute ago
                         </div>
                     </div>
                 </div>
@@ -46,11 +44,11 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Pressure</h4>
-                        <p class="card-category">Last observed value</p>
+                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry.pressure | number}}</span></p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">access_time</i> campaign sent 2 days ago
+                            <i class="material-icons">access_time</i> updated 1 minute ago
                         </div>
                     </div>
                 </div>
@@ -64,11 +62,11 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">TVOC</h4>
-                        <p class="card-category">Last observed value</p>
+                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry.tvoc | number}}</span></p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">access_time</i> campaign sent 2 days ago
+                            <i class="material-icons">access_time</i> updated 1 minute ago
                         </div>
                     </div>
                 </div>

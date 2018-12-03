@@ -11,8 +11,10 @@ import { SensorTelemetry } from './sensor-telemetry.model';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  days = 10;
-  samples = 100;
+  days = 7;
+  samples = 70;
+
+  lastTelemetry: SensorTelemetry;
 
   constructor(private telemetryService: TelemetryService) {
   }
@@ -53,6 +55,10 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit() {
+    this.telemetryService.getLastTelemetry()
+      .subscribe(telemetry => {
+        this.lastTelemetry = telemetry;
+      });
 
     this.telemetryService.getTelemetry(this.days, this.samples)
       .subscribe(telemetry => {
@@ -104,8 +110,8 @@ export class DashboardComponent implements OnInit {
       lineSmooth: Chartist.Interpolation.cardinal({
         tension: 0
       }),
-      low: Math.round(Math.min(...temperature) * 0.9),
-      high: Math.round(Math.max(...temperature) * 1.1),
+      low: Math.round(Math.min(...temperature) * 0.95),
+      high: Math.round(Math.max(...temperature) * 1.05),
       chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
     }
 
@@ -123,8 +129,8 @@ export class DashboardComponent implements OnInit {
       lineSmooth: Chartist.Interpolation.cardinal({
         tension: 0
       }),
-      low: Math.round(Math.min(...humidity) * 0.9),
-      high: Math.round(Math.max(...humidity) * 1.1),
+      low: Math.round(Math.min(...humidity) * 0.95),
+      high: Math.round(Math.max(...humidity) * 1.05),
       chartPadding: { top: 0, right: 0, bottom: 0, left: 0 }
     }
 

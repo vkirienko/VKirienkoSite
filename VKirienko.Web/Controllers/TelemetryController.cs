@@ -24,6 +24,16 @@ namespace VKirienko.Web.Controllers
         }
 
         // GET: api/Telemetry
+        [HttpGet("")]
+        public SensorTelemetryViewModel Get()
+        {
+            var maxDate = _context.SensorTelemetry.Max(t => t.Date);
+            var telemetry = _context.SensorTelemetry.First(t => t.Date == maxDate);
+            return _mapper.Map<SensorTelemetryViewModel>(telemetry);
+        }
+
+
+        // GET: api/Telemetry
         [HttpGet("{days}/{samples}")]
         public IEnumerable<SensorTelemetryViewModel> Get(int days, int samples)
         {

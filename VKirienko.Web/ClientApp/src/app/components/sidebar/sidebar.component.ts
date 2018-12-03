@@ -27,8 +27,8 @@ export const ROUTES: RouteInfo[] = [
   { path: '/about', title: 'About Me', icon: 'person', class: '' },
   { path: '/contacts', title: 'Contacts', icon: 'contacts', class: '' },
   { path: '/resume', title: 'Resume', icon: 'description', class: '' },
-  { path: '/dashboard', title: 'IoT Dashboard', icon: 'dashboard', class: '' },
-  { path: '', title: '', icon: '', class: '' }
+  { path: '', title: '', icon: '', class: '' },
+  { path: '/dashboard', title: 'IoT Dashboard', icon: 'dashboard', class: '' }
 ];
 
 @Component({
