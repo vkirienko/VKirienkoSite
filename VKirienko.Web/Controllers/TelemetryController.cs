@@ -29,6 +29,7 @@ namespace VKirienko.Web.Controllers
         {
             var maxDate = _context.SensorTelemetry.Max(t => t.Date);
             var telemetry = _context.SensorTelemetry.First(t => t.Date == maxDate);
+            telemetry.Date = telemetry.Date.ToLocalTime();
             return _mapper.Map<SensorTelemetryViewModel>(telemetry);
         }
 
@@ -37,7 +38,7 @@ namespace VKirienko.Web.Controllers
         [HttpGet("{days}/{samples}")]
         public IEnumerable<SensorTelemetryViewModel> Get(int days, int samples)
         {
-            var today = DateTime.Now;
+            var today = DateTime.UtcNow;
             var startDate = today.AddDays(-days);
 
             var sampleSize = Math.Round((today - startDate).TotalMinutes / samples);
@@ -48,7 +49,7 @@ namespace VKirienko.Web.Controllers
                 .GroupBy(g => Math.Round((today - g.Date).TotalMinutes / sampleSize))
                 .Select(g => new SensorTelemetryViewModel
                 {
-                    Date = today.AddMinutes(-g.Key * sampleSize),
+                    Date = today.AddMinutes(-g.Key * sampleSize).ToLocalTime(),
                     Temperature = g.Average(s => s.Temperature),
                     Humidity = g.Average(s => s.Humidity),
                     Pressure = g.Average(s => s.Pressure),

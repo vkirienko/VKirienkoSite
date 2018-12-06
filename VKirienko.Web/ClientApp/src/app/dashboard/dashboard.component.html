@@ -8,11 +8,11 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Temperature</h4>
-                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry.temperature | number}}</span></p>
+                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.temperature | number}}</span></p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">access_time</i> updated 1 minute ago
+                            <i class="material-icons">access_time</i> last updated {{lastTelemetry?.date | date : 'M/dd/yyyy h:mm a'}}
                         </div>
                     </div>
                 </div>
@@ -26,11 +26,11 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Humidity</h4>
-                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry.humidity | number}}</span></p>
+                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.humidity | number}}</span></p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">access_time</i> updated 1 minute ago
+                            <i class="material-icons">access_time</i> last updated {{lastTelemetry?.date | date : 'M/dd/yyyy h:mm a'}}
                         </div>
                     </div>
                 </div>
@@ -44,11 +44,11 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Pressure</h4>
-                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry.pressure | number}}</span></p>
+                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.pressure | number}}</span></p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">access_time</i> updated 1 minute ago
+                            <i class="material-icons">access_time</i> last updated {{lastTelemetry?.date | date : 'M/dd/yyyy h:mm a'}}
                         </div>
                     </div>
                 </div>
@@ -57,16 +57,16 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-chart">
-                    <div class="card-header card-header-danger">
+                    <div class="card-header card-header-success">
                         <div class="ct-chart" id="tvocChart"></div>
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">TVOC</h4>
-                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry.tvoc | number}}</span></p>
+                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.tvoc | number}}</span></p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">access_time</i> updated 1 minute ago
+                            <i class="material-icons">access_time</i> last updated {{lastTelemetry?.date | date : 'M/dd/yyyy h:mm a'}}
                         </div>
                     </div>
                 </div>

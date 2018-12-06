@@ -12,7 +12,7 @@ import { SensorTelemetry } from './sensor-telemetry.model';
 })
 export class DashboardComponent implements OnInit {
   days = 7;
-  samples = 70;
+  samples = 84;
 
   lastTelemetry: SensorTelemetry;
 
@@ -70,14 +70,13 @@ export class DashboardComponent implements OnInit {
     let labels: string[] = [];
 
     let day = new Date();
-    day.setDate(day.getDate() - this.days);
 
     const rollover = (this.samples / this.days);
 
-    for (let i = 0; i < this.samples; i++) {
+    for (let i = this.samples; i >= 0; i--) {
       if ((i % rollover) == 0) {
         labels[i] = day.getDate().toString();
-        day.setDate(day.getDate() + 1);
+        day.setDate(day.getDate() - 1);
       }
       //else {
       //  labels[i] = '';
