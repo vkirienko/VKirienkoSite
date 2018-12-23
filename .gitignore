@@ -1084,3 +1084,5 @@ $RECYCLE.BIN/
 /Images/untitled.png
 /.vs/Markman/v15/Server/sqlite3
 /.vs/VKirienko.Web
+/Deploy/ClientApp/dist
+/Deploy

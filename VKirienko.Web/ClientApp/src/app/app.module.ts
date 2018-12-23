@@ -9,6 +9,11 @@ import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faGlobe, faAddressCard, faHeart, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faWindows, faGithub } from '@fortawesome/free-brands-svg-icons';
+
 import {
   AgmCoreModule
 } from '@agm/core';
@@ -19,6 +24,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    FontAwesomeModule,
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
@@ -34,4 +40,13 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    library.add(faAddressCard);
+    library.add(faGlobe);
+    library.add(faHeart);
+    library.add(faStar);
+    library.add(faWindows);
+    library.add(faGithub);
+  }
+}

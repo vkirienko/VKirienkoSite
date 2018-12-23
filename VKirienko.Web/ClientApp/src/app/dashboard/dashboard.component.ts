@@ -109,8 +109,8 @@ export class DashboardComponent implements OnInit {
       lineSmooth: Chartist.Interpolation.cardinal({
         tension: 0
       }),
-      low: Math.round(Math.min(...temperature) * 0.95),
-      high: Math.round(Math.max(...temperature) * 1.05),
+      low: Math.min(...temperature),
+      high: Math.max(...temperature),
       chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
     }
 
@@ -128,8 +128,8 @@ export class DashboardComponent implements OnInit {
       lineSmooth: Chartist.Interpolation.cardinal({
         tension: 0
       }),
-      low: Math.round(Math.min(...humidity) * 0.95),
-      high: Math.round(Math.max(...humidity) * 1.05),
+      low: Math.min(...humidity),
+      high: Math.max(...humidity),
       chartPadding: { top: 0, right: 0, bottom: 0, left: 0 }
     }
 
@@ -147,8 +147,8 @@ export class DashboardComponent implements OnInit {
       lineSmooth: Chartist.Interpolation.cardinal({
         tension: 0
       }),
-      low: Math.round(Math.min(...pressure) * 0.99),
-      high: Math.round(Math.max(...pressure) * 1.01),
+      low: Math.min(...pressure),
+      high: Math.max(...pressure),
       chartPadding: { top: 0, right: 0, bottom: 0, left: 0 }
     }
 
