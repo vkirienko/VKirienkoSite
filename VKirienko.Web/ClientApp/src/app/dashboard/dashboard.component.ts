@@ -166,8 +166,8 @@ export class DashboardComponent implements OnInit {
       lineSmooth: Chartist.Interpolation.cardinal({
         tension: 0
       }),
-      low: Math.round(Math.min(...tvoc) * 0.9),
-      high: Math.round(Math.max(...tvoc) * 1.1),
+      low: Math.round(Math.min(...tvoc) * 0.99),
+      high: Math.round(Math.max(...tvoc) * 1.01),
       chartPadding: { top: 0, right: 0, bottom: 0, left: 0 }
     }
 
