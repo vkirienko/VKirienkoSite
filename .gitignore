@@ -1087,3 +1087,4 @@ $RECYCLE.BIN/
 /Deploy/ClientApp/dist
 /Deploy
 /VKirienko.Web/MapsApiKey.txt
+/VKirienko.Web/GoogleMapsApiKey.txt
