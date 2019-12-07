@@ -1086,3 +1086,4 @@ $RECYCLE.BIN/
 /.vs/VKirienko.Web
 /Deploy/ClientApp/dist
 /Deploy
+/VKirienko.Web/MapsApiKey.txt
