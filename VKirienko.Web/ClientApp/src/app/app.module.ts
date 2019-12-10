@@ -9,8 +9,7 @@ import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faGlobe, faAddressCard, faHeart, faStar } from '@fortawesome/free-solid-svg-icons'
 import { faWindows, faGithub } from '@fortawesome/free-brands-svg-icons';
 
@@ -41,12 +40,12 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor() {
-    library.add(faAddressCard);
-    library.add(faGlobe);
-    library.add(faHeart);
-    library.add(faStar);
-    library.add(faWindows);
-    library.add(faGithub);
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faAddressCard);
+    library.addIcons(faGlobe);
+    library.addIcons(faHeart);
+    library.addIcons(faStar);
+    library.addIcons(faWindows);
+    library.addIcons(faGithub);
   }
 }

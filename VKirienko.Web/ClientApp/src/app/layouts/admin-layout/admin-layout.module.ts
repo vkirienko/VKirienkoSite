@@ -15,6 +15,7 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { AboutComponent } from '../../about/about.component';
 import { ContactsComponent } from '../../contacts/contacts.component';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
+import { FlightsComponent } from '../../flights/flights.component';
 import { ResumeComponent } from '../../resume/resume.component';
 
 import {
@@ -46,10 +47,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
-	AboutComponent,
-	ContactsComponent,
+	  AboutComponent,
+    ContactsComponent,
+    FlightsComponent,
     DashboardComponent,
-	ResumeComponent
+	  ResumeComponent
   ]
 })
 
