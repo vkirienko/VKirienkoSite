@@ -71,12 +71,17 @@
   <ItemGroup>
     <None Remove="ClientApp\a.cmd" />
     <None Remove="ClientApp\a.cmd" />
+    <None Remove="ClientApp\src\app\security\security-report-url.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="ClientApp\src\app\about\" />
     <Folder Include="ClientApp\src\app\contacts\" />
     <Folder Include="ClientApp\src\app\resume\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\security\security-report-url.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

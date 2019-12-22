@@ -17,6 +17,7 @@ import { ContactsComponent } from '../../contacts/contacts.component';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { FlightsComponent } from '../../flights/flights.component';
 import { ResumeComponent } from '../../resume/resume.component';
+import { SecurityComponent } from '../../security/security.component';
 
 import {
   MatButtonModule,
@@ -50,9 +51,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 	  AboutComponent,
     ContactsComponent,
     FlightsComponent,
+    SecurityComponent,
     DashboardComponent,
 	  ResumeComponent
   ]
 })
 
-export class AdminLayoutModule {}
+export class AdminLayoutModule {
+}

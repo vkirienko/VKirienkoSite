@@ -5,6 +5,7 @@ import { ContactsComponent } from '../../contacts/contacts.component';
 import { FlightsComponent } from '../../flights/flights.component';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { ResumeComponent } from '../../resume/resume.component';
+import { SecurityComponent } from '../../security/security.component';
 
 import { DashboardOldComponent } from '../../dashboard-old/dashboard.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
@@ -63,6 +64,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'flights',        component: FlightsComponent },
     { path: 'resume',    	    component: ResumeComponent },
+    { path: 'security',       component: SecurityComponent },
 
     { path: 'dashboard-old',  component: DashboardOldComponent },
     { path: 'user-profile',   component: UserProfileComponent },
