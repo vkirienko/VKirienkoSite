@@ -19,12 +19,10 @@ import { FlightsComponent } from '../../flights/flights.component';
 import { ResumeComponent } from '../../resume/resume.component';
 import { SecurityComponent } from '../../security/security.component';
 
-import {
-  MatButtonModule,
-  MatInputModule,
-  MatRippleModule,
-  MatTooltipModule,
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatRippleModule } from '@angular/material/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
