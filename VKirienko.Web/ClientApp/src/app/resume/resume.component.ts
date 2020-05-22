@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -6,12 +6,6 @@ import { faDownload } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './resume.component.html',
   styleUrls: ['./resume.component.scss']
 })
-export class ResumeComponent implements OnInit {
+export class ResumeComponent {
   faDownload = faDownload;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
 }

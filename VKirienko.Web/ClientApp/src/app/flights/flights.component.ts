@@ -1,4 +1,4 @@
-import { Component, OnInit, SecurityContext } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { environment } from '../../environments/environment';
 
@@ -12,7 +12,7 @@ export class FlightsComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.url = this.sanitizer.bypassSecurityTrustResourceUrl(environment.production ? 'https://vkirienko.com/fa' : 'http://flights.vkirienko.com');
   }
 }

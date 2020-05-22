@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { Location, LocationStrategy, PathLocationStrategy, PopStateEvent } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Location, PopStateEvent } from '@angular/common';
 import 'rxjs/add/operator/filter';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
@@ -18,7 +17,7 @@ export class AdminLayoutComponent implements OnInit {
 
   constructor( public location: Location, private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
       const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
       if (isWindows && !document.getElementsByTagName('body')[0].classList.contains('sidebar-mini')) {
@@ -55,10 +54,12 @@ export class AdminLayoutComponent implements OnInit {
           ps = new PerfectScrollbar(elemSidebar);
       }
   }
-  ngAfterViewInit() {
+
+  ngAfterViewInit(): void {
       this.runOnRouteChange();
   }
-  isMaps(path){
+
+  isMaps(path): boolean{
       var titlee = this.location.prepareExternalUrl(this.location.path());
       titlee = titlee.slice( 1 );
       if(path == titlee){
@@ -68,6 +69,7 @@ export class AdminLayoutComponent implements OnInit {
           return true;
       }
   }
+
   runOnRouteChange(): void {
     if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
       const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
@@ -75,6 +77,7 @@ export class AdminLayoutComponent implements OnInit {
       ps.update();
     }
   }
+
   isMac(): boolean {
       let bool = false;
       if (navigator.platform.toUpperCase().indexOf('MAC') >= 0 || navigator.platform.toUpperCase().indexOf('IPAD') >= 0) {

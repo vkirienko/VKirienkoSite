@@ -12,7 +12,7 @@ export class SecurityComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.reports = [
       {
           name: 'DNSSEC Report',

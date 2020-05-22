@@ -15,12 +15,10 @@ draggable?: boolean;
 })
 export class MapsComponent implements OnInit {
 
-  constructor() { }
+  ngOnInit(): void {
 
-  ngOnInit() {
-
-    var myLatlng = new google.maps.LatLng(40.852438, -73.972401);
-    var mapOptions = {
+    const myLatlng = new google.maps.LatLng(40.852438, -73.972401);
+    const mapOptions = {
         zoom: 13,
         center: myLatlng,
         scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
@@ -111,9 +109,10 @@ export class MapsComponent implements OnInit {
         }]
 
     };
-    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-    var marker = new google.maps.Marker({
+    const map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    const marker = new google.maps.Marker({
         position: myLatlng,
         title: "Hello World!"
     });

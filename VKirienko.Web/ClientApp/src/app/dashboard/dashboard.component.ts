@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   constructor(private telemetryService: TelemetryService) {
   }
 
-  startAnimationForLineChart(chart) {
+  startAnimationForLineChart(chart): void {
     let seq: any, delays: any, durations: any;
     seq = 0;
     delays = 80;
@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit {
   };
 
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.telemetryService.getLastTelemetry()
       .subscribe(telemetry => {
         this.lastTelemetry = telemetry;
@@ -86,7 +86,7 @@ export class DashboardComponent implements OnInit {
     return labels;
   }
 
-  private createCharts(telemetry: SensorTelemetry[]) {
+  private createCharts(telemetry: SensorTelemetry[]): void {
     let temperature: number[] = [];
     let humidity: number[] = [];
     let pressure: number[] = [];

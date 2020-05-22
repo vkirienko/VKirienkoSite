@@ -9,7 +9,7 @@ import * as Chartist from 'chartist';
 export class DashboardOldComponent implements OnInit {
 
   constructor() { }
-  startAnimationForLineChart(chart){
+  startAnimationForLineChart(chart): void{
       let seq: any, delays: any, durations: any;
       seq = 0;
       delays = 80;
@@ -42,7 +42,7 @@ export class DashboardOldComponent implements OnInit {
 
       seq = 0;
   };
-  startAnimationForBarChart(chart){
+  startAnimationForBarChart(chart): void{
       let seq2: any, delays2: any, durations2: any;
 
       seq2 = 0;
@@ -65,7 +65,7 @@ export class DashboardOldComponent implements OnInit {
 
       seq2 = 0;
   };
-  ngOnInit() {
+  ngOnInit(): void {
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
       const dataDailySalesChart: any = {

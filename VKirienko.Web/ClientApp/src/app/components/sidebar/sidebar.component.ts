@@ -41,17 +41,16 @@ export const ROUTES: RouteInfo[] = [
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  menuItems: any[];
+  menuItems: RouteInfo[];
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.menuItems = isDevMode() ? ROUTES_DEV.filter(menuItem => menuItem) : ROUTES.filter(menuItem => menuItem);
   }
-  isMobileMenu() {
+
+  isMobileMenu(): boolean {
       if ($(window).width() > 991) {
           return false;
       }
       return true;
-  };
+  }
 }
