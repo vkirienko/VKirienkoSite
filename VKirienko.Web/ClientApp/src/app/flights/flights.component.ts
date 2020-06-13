@@ -13,6 +13,6 @@ export class FlightsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(environment.production ? 'https://vkirienko.com/fa' : 'http://flights.vkirienko.com');
+    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(environment.production ? 'https://vkirienko.com/tar' : 'http://flights.vkirienko.com');
   }
 }
