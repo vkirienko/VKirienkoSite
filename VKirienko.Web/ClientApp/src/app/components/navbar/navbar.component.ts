@@ -109,7 +109,7 @@ export class NavbarComponent implements OnInit {
     }
   };
 
-  getTitle(): void {
+  getTitle(): string {
     var titlee = this.location.prepareExternalUrl(this.location.path());
     if (titlee.charAt(0) === '#') {
       titlee = titlee.slice(2);
