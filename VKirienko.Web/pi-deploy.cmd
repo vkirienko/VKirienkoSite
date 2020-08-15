@@ -18,4 +18,7 @@ rem
 rem 7. sudo systemctl restart nginx
 rem
 
+rmdir bin /s /q
+rmdir obj /s /q
+
 dotnet publish -c Release -r linux-arm

@@ -11,6 +11,7 @@ export const ROUTES_DEV: RouteInfo[] = [
   { path: '/about', title: 'About Me', icon: 'person', class: '' },
   { path: '/contacts', title: 'Contacts', icon: 'contacts', class: '' },
   { path: '/resume', title: 'Resume', icon: 'description', class: '' },
+  { path: '', title: '', icon: '', class: '' },
   { path: '/flights', title: 'Flight Radar', icon: 'flight', class: '' },
   { path: '/dashboard', title: 'IoT Dashboard', icon: 'dashboard', class: '' },
   { path: '/security', title: 'Security', icon: 'security', class: '' },
