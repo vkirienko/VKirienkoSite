@@ -1,18 +1,18 @@
 <div class="logo">
-    <div class="logo-img">
-        <img src="/assets/img/Letter-K-icon.png" />
-    </div>
-    <a routerLink="/about" class="pl-3 simple-text">
-        Vladimir Kirienko
-    </a>
+  <div class="logo-img">
+    <img src="/assets/img/Letter-K-icon.png" alt="Logo" />
+  </div>
+  <a routerLink="/about" class="pl-3 simple-text">
+    Vladimir Kirienko
+  </a>
 </div>
 <div class="sidebar-wrapper">
-    <ul class="nav">
-        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
-            <a class="nav-link" [routerLink]="[menuItem.path]">
-                <i class="material-icons">{{menuItem.icon}}</i>
-                <p class="font-weight-bold">{{menuItem.title}}</p>
-            </a>
-        </li>
-    </ul>
+  <ul class="nav">
+    <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+      <a class="nav-link" [routerLink]="[menuItem.path]">
+        <i class="material-icons">{{menuItem.icon}}</i>
+        <p class="font-weight-bold">{{menuItem.title}}</p>
+      </a>
+    </li>
+  </ul>
 </div>
