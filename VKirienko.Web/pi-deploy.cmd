@@ -6,12 +6,12 @@ rem
 rem 2. Replace YOUR_GOOGLE_MAPS_API_KEY with real key in main.xxxxxxxxx.js file
 rem    ((Get-Content -path .\bin\Release\netcoreapp3.1\linux-arm\publish\main.*.js -Raw) -replace 'YOUR_GOOGLE_MAPS_API_KEY','real key' | Set-Content -Path .\bin\Release\netcoreapp3.1\linux-arm\publish\main.*.js)
 rem
-rem 3. Delete folder /home/pi/vkirienko/publish
+rem 3. Delete folder /home/vlad/web/publish
 rem
-rem 4. Copy \bin\Release\netcoreapp3.1\linux-arm\publish\ to PI /home/pi/vkirienko/publish (make sure FileZilla 
+rem 4. Copy \bin\Release\netcoreapp3.1\linux-arm\publish\ to PI /home/vlad/web/publish (make sure FileZilla 
 rem    transfers all files including files without extensions as binary files)
 rem
-rem 5. sudo chmod +x /home/pi/vkirienko/publish/VKirienko.Web
+rem 5. sudo chmod +x /home/vlad/web/publish/VKirienko.Web
 rem
 rem 6. sudo systemctl restart vkirienko-web.service
 rem
