@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
     selector: 'app-flight-radar',
     templateUrl: './flight-radar.component.html'
 })
-export class FlightsComponent implements OnInit {
+export class FlightRadarComponent implements OnInit {
 
     emptyUrl: SafeResourceUrl;
 
