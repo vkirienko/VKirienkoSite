@@ -3,8 +3,8 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { environment } from '../../environments/environment';
 
 @Component({
-    selector: 'app-flights',
-    templateUrl: './flights.component.html'
+    selector: 'app-flight-radar',
+    templateUrl: './flight-radar.component.html'
 })
 export class FlightsComponent implements OnInit {
 
