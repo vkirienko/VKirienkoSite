@@ -1,3 +1,4 @@
+using AspNetCore.Proxy;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using VKirienko.Web.Data;
+using VKirienko.Web.Settings;
 
 namespace VKirienko.Web
 {
@@ -24,10 +26,15 @@ namespace VKirienko.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var settings = Configuration.GetSection("Settings").Get<ApplicationSettings>();
+
+            services.AddSingleton(settings);
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddControllersWithViews();
             services.AddRazorPages();
-
+            
+            services.AddProxies();
             services.AddAutoMapper(typeof(Startup));
 
             services.AddDbContext<IoTContext>(options =>
@@ -41,7 +48,7 @@ namespace VKirienko.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationSettings settings)
         {
             if (env.IsDevelopment())
             {
@@ -60,6 +67,14 @@ namespace VKirienko.Web
             app.UseStaticFiles();
             app.UseRouting();
             app.UseSpaStaticFiles();
+
+            app.UseProxies(proxies =>
+            {
+                proxies.Map("adsb/fa-stats", proxy => proxy.UseHttp($"{settings.FlightAware.Url}{settings.FlightAware.UserName}"));
+                proxies.Map("adsb/fr24-stats", proxy => proxy.UseHttp($"{settings.FlightRadar24.Url}{settings.FlightRadar24.UserName}"));
+                proxies.Map("adsb/rb-stats", proxy => proxy.UseHttp($"{settings.RadarBox.Url}{settings.RadarBox.UserName}"));
+                proxies.Map("adsb/ae-stats", proxy => proxy.UseHttp($"{settings.AdsbExchange.Url}{settings.AdsbExchange.UserName}"));
+            });
 
             app.UseEndpoints(endpoints =>
             {
