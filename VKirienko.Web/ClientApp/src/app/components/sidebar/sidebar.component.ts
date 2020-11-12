@@ -13,6 +13,7 @@ export const ROUTES_DEV: RouteInfo[] = [
   { path: '/resume', title: 'Resume', icon: 'description', class: '' },
   { path: '', title: '', icon: '', class: '' },
   { path: '/flight-radar', title: 'Flight Radar', icon: 'flight', class: '' },
+  { path: '/flight-feed', title: 'Flight Feed', icon: 'send', class: '' },
   { path: '/dashboard', title: 'IoT Dashboard', icon: 'dashboard', class: '' },
   { path: '/security', title: 'Security', icon: 'security', class: '' },
   { path: '', title: '', icon: '', class: '' },
@@ -32,6 +33,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/resume', title: 'Resume', icon: 'description', class: '' },
   { path: '', title: '', icon: '', class: '' },
   { path: '/flight-radar', title: 'Flight Radar', icon: 'flight', class: '' },
+  { path: '/flight-feed', title: 'Flight Feed', icon: 'send', class: '' },
   { path: '/dashboard', title: 'IoT Dashboard', icon: 'dashboard', class: '' },
   { path: '/security', title: 'Security', icon: 'security', class: '' }
 ];

@@ -15,6 +15,7 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { AboutComponent } from '../../about/about.component';
 import { ContactsComponent } from '../../contacts/contacts.component';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
+import { FlightFeedComponent } from '../../flight-feed/flight-feed.component';
 import { FlightRadarComponent } from '../../flight-radar/flight-radar.component';
 import { ResumeComponent } from '../../resume/resume.component';
 import { SecurityComponent } from '../../security/security.component';
@@ -46,12 +47,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
-	  AboutComponent,
+    AboutComponent,
     ContactsComponent,
+    FlightFeedComponent,
     FlightRadarComponent,
     SecurityComponent,
     DashboardComponent,
-	  ResumeComponent
+    ResumeComponent
   ]
 })
 
