@@ -1,3 +1,15 @@
+& cmd /c rmdir bin /s /q
+& cmd /c rmdir obj /s /q
+
 & dotnet publish -c Release -r linux-arm
 
-((Get-Content -path .\bin\Release\netcoreapp3.1\linux-arm\publish\ClientApp\dist\main.*.js -Raw) -replace 'YOUR_GOOGLE_MAPS_API_KEY','real key' | Set-Content -Path .\bin\Release\netcoreapp3.1\linux-arm\publish\ClientApp\dist\main.*.js)
+$key = (Get-Content -path ..\..\Raspberry\google\GoogleMapsApiKey.txt -Raw)
+
+Write-Host $key
+
+Get-ChildItem '.\bin\Release\net5.0\linux-arm\publish\ClientApp\dist\main*.js' -Recurse | ForEach {
+	Write-Host $_
+
+	$content = [System.IO.File]::ReadAllText($_).Replace("YOUR_GOOGLE_MAPS_API_KEY", $key)
+	[System.IO.File]::WriteAllText($_, $content)
+}
