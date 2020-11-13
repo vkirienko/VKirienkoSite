@@ -12,6 +12,7 @@ export class FlightRadarComponent implements OnInit {
 
   urlFlights: SafeResourceUrl;
   urlGraphs: SafeResourceUrl;
+  urlPlot: SafeResourceUrl;
 
   constructor(private sanitizer: DomSanitizer) {
   }
@@ -21,6 +22,7 @@ export class FlightRadarComponent implements OnInit {
 
     this.urlFlights = this.emptyUrl;
     this.urlGraphs = this.emptyUrl;
+    this.urlPlot = this.emptyUrl;
 
     this.activateTab('flights');
   }
@@ -31,13 +33,19 @@ export class FlightRadarComponent implements OnInit {
         if (this.urlFlights != this.emptyUrl) {
           return;
         }
-        this.urlFlights = this.sanitizer.bypassSecurityTrustResourceUrl(environment.production ? 'https://vkirienko.com/tar' : 'https://vkirienko.com/tar');
+        this.urlFlights = this.sanitizer.bypassSecurityTrustResourceUrl(environment.production ? 'https://vkirienko.com/tar' : 'http://localhost');
         break;
       case 'graphs':
         if (this.urlGraphs != this.emptyUrl) {
           return;
         }
         this.urlGraphs = this.sanitizer.bypassSecurityTrustResourceUrl('https://vkirienko.com/graphs1090');
+        break;
+      case 'plot':
+        if (this.urlPlot != this.emptyUrl) {
+          return;
+        }
+        this.urlPlot = this.sanitizer.bypassSecurityTrustResourceUrl('https://vkirienko.com/fa/data/graph.png');
         break;
     }
   }
