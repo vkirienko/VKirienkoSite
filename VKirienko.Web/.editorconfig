@@ -1,5 +1,5 @@
 # To learn more about .editorconfig see https://aka.ms/editorconfigdocs
 root = true
 
-[*.sh]
+[*.{sh,service}]
 end_of_line = lf
