@@ -9,7 +9,7 @@ chmod +x /home/vlad/web/publish/VKirienko.Web
 echo "Deploying vkirienko-web service ..."
 systemctl stop vkirienko-web.service
 
-wget -O /tmp/vkirienko-web.service https://raw.githubusercontent.com/vkirienko/VKirienkoSite/master/vkirienko-web.service
+wget -O /tmp/vkirienko-web.service https://raw.githubusercontent.com/vkirienko/VKirienkoSite/master/VKirienko.Web/vkirienko-web.service
 cp /tmp/vkirienko-web.service /etc/systemd/system
 
 systemctl start vkirienko-web.service
