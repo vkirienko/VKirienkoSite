@@ -33,7 +33,7 @@ export class FlightRadarComponent implements OnInit {
         if (this.urlFlights != this.emptyUrl) {
           return;
         }
-        this.urlFlights = this.sanitizer.bypassSecurityTrustResourceUrl(environment.production ? 'https://vkirienko.com/tar' : 'http://localhost');
+        this.urlFlights = this.sanitizer.bypassSecurityTrustResourceUrl(environment.production ? 'https://vkirienko.com/tar1090' : 'http://localhost');
         break;
       case 'graphs':
         if (this.urlGraphs != this.emptyUrl) {
