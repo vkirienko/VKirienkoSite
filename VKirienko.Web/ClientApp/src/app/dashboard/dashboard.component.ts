@@ -91,12 +91,14 @@ export class DashboardComponent implements OnInit {
     let humidity: number[] = [];
     let pressure: number[] = [];
     let tvoc: number[] = [];
+    let radiation: number[] = [];
 
     for (let t of telemetry) {
       temperature.push(t.temperature);
       humidity.push(t.humidity);
       pressure.push(t.pressure);
       tvoc.push(t.tvoc / 100000);
+      radiation.push(t.radiation);
     }
 
     const labels = this.populateLabels();
@@ -176,5 +178,24 @@ export class DashboardComponent implements OnInit {
     var tvocChart = new Chartist.Line('#tvocChart', dataTvocChart, optionsTvocChart);
 
     this.startAnimationForLineChart(tvocChart);
+
+    /* ----------==========     Radiation Chart initialization    ==========---------- */
+
+    const dataRadiationChart: any = { labels: labels, series: [] };
+
+    const optionsRadiationChart: any = {
+      lineSmooth: Chartist.Interpolation.cardinal({
+        tension: 0
+      }),
+      low: 0,
+      high: Math.round(Math.max(...radiation) * 1.01),
+      chartPadding: { top: 0, right: 0, bottom: 0, left: 0 }
+    }
+
+    dataRadiationChart.series.push(radiation);
+
+    var radiationChart = new Chartist.Line('#radiationChart', dataRadiationChart, optionsRadiationChart);
+
+    this.startAnimationForLineChart(radiationChart);
   }
 }

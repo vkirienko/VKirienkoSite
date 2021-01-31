@@ -14,8 +14,10 @@ namespace VKirienko.Web.Controllers
     [ApiController]
     public class TelemetryController : ControllerBase
     {
+        private static Gm10ViewModel _gm10ViewModel;
+
         private readonly IMapper _mapper;
-        private IoTContext _context;
+        private readonly IoTContext _context;
 
         public TelemetryController(IoTContext context, IMapper mapper)
         {
@@ -53,17 +55,43 @@ namespace VKirienko.Web.Controllers
                     Temperature = g.Average(s => s.Temperature),
                     Humidity = g.Average(s => s.Humidity),
                     Pressure = g.Average(s => s.Pressure),
-                    Tvoc = g.Average(s => s.Tvoc)
+                    Tvoc = g.Average(s => s.Tvoc),
+                    Radiation = g.Average(s => s.Radiation)
                 })
                 .ToList();
         }
 
-        // POST: api/Telemetry
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] SensorTelemetryViewModel telemetry)
+        // POST: api/Telemetry/bme680
+        [HttpPost("bme680")]
+        public async Task<IActionResult> PostBme680Telemetry([FromBody] Bme680ViewModel model)
         {
-            _context.SensorTelemetry.Add(_mapper.Map<SensorTelemetry>(telemetry));
+            var telemetry = _mapper.Map<SensorTelemetry>(model, opt => {
+                opt.AfterMap((src, dest) => { 
+                    dest.Date = DateTime.UtcNow;
+                });
+            });
+
+            MergeWithGm10ViewModel();
+
+            _context.SensorTelemetry.Add(telemetry);
+            
             await _context.SaveChangesAsync();
+            
+            return Ok();
+
+            void MergeWithGm10ViewModel()
+            {
+                telemetry.Radiation = _gm10ViewModel?.Radiation ?? 0;
+
+                _gm10ViewModel = null;
+            }
+        }
+
+        // POST: api/Telemetry/gm10
+        [HttpPost("gm10")]
+        public IActionResult PostGm10Telemetry([FromBody] Gm10ViewModel model)
+        {
+            _gm10ViewModel = model;
             return Ok();
         }
     }

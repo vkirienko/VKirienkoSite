@@ -8,6 +8,7 @@ namespace VKirienko.Web.Profiles
     {
         public SensorTelemetryProfile()
         {
+            CreateMap<Bme680ViewModel, SensorTelemetry>();
             CreateMap<SensorTelemetry, SensorTelemetryViewModel>().ReverseMap();
         }
     }

@@ -14,5 +14,11 @@ namespace VKirienko.Web.Data
         public IoTContext(DbContextOptions<IoTContext> options) : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SensorTelemetry>()
+                .HasKey(c => c.SensorTelemetryId);
+        }
     }
 }

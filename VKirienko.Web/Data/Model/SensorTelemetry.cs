@@ -1,16 +1,15 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace VKirienko.Web.Data.Model
 {
     public class SensorTelemetry
     {
-        [Key]
         public int SensorTelemetryId { get; set; }
         public DateTime Date { get; set; }
-        public decimal Temperature { get; set; }
-        public decimal Humidity { get; set; }
-        public decimal Pressure { get; set; }
-        public decimal Tvoc { get; set; }
+        public double Temperature { get; set; }
+        public double Humidity { get; set; }
+        public double Pressure { get; set; }
+        public double Tvoc { get; set; }
+        public double Radiation { get; set; }
     }
 }
