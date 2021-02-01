@@ -8,7 +8,7 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Temperature</h4>
-                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.temperature | number}} &#8451;</span></p>
+                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.temperature | number:'1.1-1'}} &#8451;</span></p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -24,7 +24,7 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Humidity</h4>
-                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.humidity | number}} %</span></p>
+                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.humidity | number:'1.0-0'}} %</span></p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -42,7 +42,7 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Pressure</h4>
-                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.pressure | number}} hPa</span></p>
+                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.pressure | number:'1.0-0'}} hPa</span></p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -58,7 +58,7 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">TVOC</h4>
-                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.tvoc | number}}</span></p>
+                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.tvoc | number:'1.0-0'}}</span></p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -74,7 +74,7 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Radiation</h4>
-                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.radiation | number}} cpm</span></p>
+                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.radiation | number:'1.0-0'}} cpm</span></p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
