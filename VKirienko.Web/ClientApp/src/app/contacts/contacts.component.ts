@@ -2,19 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { faLinkedin, faGitSquare } from '@fortawesome/free-brands-svg-icons';
 import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
-declare const google: any;
-
-interface Marker {
-  lat: number;
-  lng: number;
-  label?: string;
-  draggable?: boolean;
-}
-
 @Component({
   selector: 'app-contacts',
-  templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.scss']
+  templateUrl: './contacts.component.html'
 })
 export class ContactsComponent implements OnInit {
   faLinkedin = faLinkedin;
@@ -116,9 +106,8 @@ export class ContactsComponent implements OnInit {
         "stylers": [{
           "visibility": "simplified"
         }]
-      }]
-
-    };
+        }]
+    } as google.maps.MapOptions;
 
     const map = new google.maps.Map(document.getElementById("map"), mapOptions);
 

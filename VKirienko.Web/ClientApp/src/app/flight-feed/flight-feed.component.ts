@@ -8,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class FlightFeedComponent implements OnInit {
 
   constructor() {
+    // do nothing
   }
 
   ngOnInit(): void {
+    // do nothing
   }
 }
