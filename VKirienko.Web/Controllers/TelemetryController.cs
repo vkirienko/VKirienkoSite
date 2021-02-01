@@ -45,20 +45,43 @@ namespace VKirienko.Web.Controllers
 
             var sampleSize = Math.Round((today - startDate).TotalMinutes / samples);
 
-            return _context.SensorTelemetry
+            var rawTelemetry = _context.SensorTelemetry
                 .Where(t => t.Date >= startDate)
-                .ToList()
-                .GroupBy(g => Math.Round((today - g.Date).TotalMinutes / sampleSize))
-                .Select(g => new SensorTelemetryViewModel
-                {
-                    Date = today.AddMinutes(-g.Key * sampleSize).ToLocalTime(),
-                    Temperature = g.Average(s => s.Temperature),
-                    Humidity = g.Average(s => s.Humidity),
-                    Pressure = g.Average(s => s.Pressure),
-                    Tvoc = g.Average(s => s.Tvoc),
-                    Radiation = g.Average(s => s.Radiation)
-                })
                 .ToList();
+
+            var telemetry = new List<SensorTelemetryViewModel>();
+
+            for (int i = 0; i < samples; i++)
+            {
+                var window = rawTelemetry.Where(t =>
+                    (t.Date - startDate).TotalMinutes >= i * sampleSize &&
+                    (t.Date - startDate).TotalMinutes < (i + 1) * sampleSize);
+
+                var sampleDate = today.AddMinutes(-(samples - i) * sampleSize).ToLocalTime();
+
+                telemetry.Add(new SensorTelemetryViewModel {
+                    Date = sampleDate,
+                    Temperature = Average(window, d => d.Temperature),
+                    Humidity = Average(window, d => d.Humidity),
+                    Pressure = Average(window, d => d.Pressure),
+                    Tvoc = Average(window, d => d.Tvoc),
+                    Radiation = Average(window, d => d.Radiation)
+                });
+            }
+
+            return telemetry;
+
+            double? Average(IEnumerable<SensorTelemetry> data, Func<SensorTelemetry, double> selector)
+            {
+                if (!data.Any())
+                    return null;
+
+                data = data.Where(d => selector(d) != 0);
+                if (!data.Any())
+                    return null;
+
+                return data.Average(d => selector(d));
+            }
         }
 
         // POST: api/Telemetry/bme680

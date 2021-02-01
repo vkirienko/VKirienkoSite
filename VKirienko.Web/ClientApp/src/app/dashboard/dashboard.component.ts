@@ -14,16 +14,18 @@ export class DashboardComponent implements OnInit {
   days = 7;
   samples = 84;
 
+  labels: string[] = [];
+
   lastTelemetry: SensorTelemetry;
 
   constructor(private telemetryService: TelemetryService) {
+    this.labels = this.populateLabels();
   }
 
   startAnimationForLineChart(chart): void {
-    let seq: any, delays: any, durations: any;
-    seq = 0;
-    delays = 80;
-    durations = 500;
+    let seq = 0;
+    const delays = 80;
+    const durations = 500;
 
     chart.on('draw', function (data) {
       if (data.type === 'line' || data.type === 'area') {
@@ -51,8 +53,7 @@ export class DashboardComponent implements OnInit {
     });
 
     seq = 0;
-  };
-
+  }
 
   ngOnInit(): void {
     this.telemetryService.getLastTelemetry()
@@ -62,14 +63,18 @@ export class DashboardComponent implements OnInit {
 
     this.telemetryService.getTelemetry(this.days, this.samples)
       .subscribe(telemetry => {
-        this.createCharts(telemetry);
+        this.createTemperatureChart(telemetry);
+        this.createHumidityChart(telemetry);
+        this.createPressureChart(telemetry);
+        this.createTvocChart(telemetry);
+        this.createRadiationChart(telemetry);
       });
   }
 
   private populateLabels(): string[] {
-    let labels: string[] = [];
+    const labels: string[] = [];
 
-    let day = new Date();
+    const day = new Date();
 
     const rollover = (this.samples / this.days);
 
@@ -86,116 +91,49 @@ export class DashboardComponent implements OnInit {
     return labels;
   }
 
-  private createCharts(telemetry: SensorTelemetry[]): void {
-    let temperature: number[] = [];
-    let humidity: number[] = [];
-    let pressure: number[] = [];
-    let tvoc: number[] = [];
-    let radiation: number[] = [];
+  private getChartData(data: number[]): any {
+    const chartData: any = { labels: this.labels, series: [] };
+    chartData.series.push(data);
+    return chartData;
+  }
 
-    for (let t of telemetry) {
-      temperature.push(t.temperature);
-      humidity.push(t.humidity);
-      pressure.push(t.pressure);
-      tvoc.push(t.tvoc / 100000);
-      radiation.push(t.radiation);
-    }
-
-    const labels = this.populateLabels();
-
-    /* ----------==========    Temperature Chart initialization For Documentation    ==========---------- */
-
-    const dataTemperatureChart: any = { labels: labels, series: [] };
-
-    const optionsTemperatureChart: any = {
-      lineSmooth: Chartist.Interpolation.cardinal({
-        tension: 0
-      }),
-      low: Math.min(...temperature),
-      high: Math.max(...temperature),
+  private getChartOptions(data: number[], min: number, max: number) {
+    const chartOptions: any = {
+      lineSmooth: Chartist.Interpolation.cardinal({ tension: 0 }),
+      low: Math.min.apply(null, data.filter(n => n != null && n != 0)) * min,
+      high: Math.max.apply(null, data.filter(n => n != null && n != 0)) * max,
       chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
     }
+    return chartOptions;
+  }
 
-    dataTemperatureChart.series.push(temperature);
+  private createTemperatureChart(telemetry: SensorTelemetry[]): void {
+    const data = telemetry.map(t => t.temperature);
 
-    var temperatureChart = new Chartist.Line('#temperatureChart', dataTemperatureChart, optionsTemperatureChart);
+    this.startAnimationForLineChart(new Chartist.Line('#temperatureChart', this.getChartData(data), this.getChartOptions(data, 1, 1)));
+  }
 
-    this.startAnimationForLineChart(temperatureChart);
+  private createHumidityChart(telemetry: SensorTelemetry[]): void {
+    const data = telemetry.map(t => t.humidity);
 
-    /* ----------==========     Pressure Chart initialization    ==========---------- */
+    this.startAnimationForLineChart(new Chartist.Line('#humidityChart', this.getChartData(data), this.getChartOptions(data, 1, 1)));
+  }
 
-    const dataHumidityChart: any = { labels: labels, series: [] };
+  private createPressureChart(telemetry: SensorTelemetry[]): void {
+    const data = telemetry.map(t => t.pressure);
 
-    const optionsHumidityChart: any = {
-      lineSmooth: Chartist.Interpolation.cardinal({
-        tension: 0
-      }),
-      low: Math.min(...humidity),
-      high: Math.max(...humidity),
-      chartPadding: { top: 0, right: 0, bottom: 0, left: 0 }
-    }
+    this.startAnimationForLineChart(new Chartist.Line('#pressureChart', this.getChartData(data), this.getChartOptions(data, 1, 1)));
+  }
 
-    dataHumidityChart.series.push(humidity);
+  private createTvocChart(telemetry: SensorTelemetry[]): void {
+    const data = telemetry.map(t => t.tvoc == null ? null : t.tvoc / 100000);
 
-    var humidityChart = new Chartist.Line('#humidityChart', dataHumidityChart, optionsHumidityChart);
+    this.startAnimationForLineChart(new Chartist.Line('#tvocChart', this.getChartData(data), this.getChartOptions(data, 0.99, 1.01)));
+  }
 
-    this.startAnimationForLineChart(humidityChart);
+  private createRadiationChart(telemetry: SensorTelemetry[]): void {
+    const data = telemetry.map(t => t.radiation);
 
-    /* ----------==========     Pressure Chart initialization    ==========---------- */
-
-    const dataPressureChart: any = { labels: labels, series: [] };
-    
-    const optionsPressureChart: any = {
-      lineSmooth: Chartist.Interpolation.cardinal({
-        tension: 0
-      }),
-      low: Math.min(...pressure),
-      high: Math.max(...pressure),
-      chartPadding: { top: 0, right: 0, bottom: 0, left: 0 }
-    }
-
-    dataPressureChart.series.push(pressure);
-
-    var pressureChart = new Chartist.Line('#pressureChart', dataPressureChart, optionsPressureChart);
-
-    this.startAnimationForLineChart(pressureChart);
-
-    /* ----------==========     TVOC Chart initialization    ==========---------- */
-
-    const dataTvocChart: any = { labels: labels, series: [] };
-
-    const optionsTvocChart: any = {
-      lineSmooth: Chartist.Interpolation.cardinal({
-        tension: 0
-      }),
-      low: Math.round(Math.min(...tvoc) * 0.99),
-      high: Math.round(Math.max(...tvoc) * 1.01),
-      chartPadding: { top: 0, right: 0, bottom: 0, left: 0 }
-    }
-
-    dataTvocChart.series.push(tvoc);
-
-    var tvocChart = new Chartist.Line('#tvocChart', dataTvocChart, optionsTvocChart);
-
-    this.startAnimationForLineChart(tvocChart);
-
-    /* ----------==========     Radiation Chart initialization    ==========---------- */
-
-    const dataRadiationChart: any = { labels: labels, series: [] };
-
-    const optionsRadiationChart: any = {
-      lineSmooth: Chartist.Interpolation.cardinal({
-        tension: 0
-      }),
-      low: 0,
-      high: Math.round(Math.max(...radiation) * 1.01),
-      chartPadding: { top: 0, right: 0, bottom: 0, left: 0 }
-    }
-
-    dataRadiationChart.series.push(radiation);
-
-    var radiationChart = new Chartist.Line('#radiationChart', dataRadiationChart, optionsRadiationChart);
-
-    this.startAnimationForLineChart(radiationChart);
+    this.startAnimationForLineChart(new Chartist.Line('#radiationChart', this.getChartData(data), this.getChartOptions(data, 0.99, 1.01)));
   }
 }
