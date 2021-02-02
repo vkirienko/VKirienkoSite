@@ -7,7 +7,7 @@ $key = (Get-Content -path ..\..\Raspberry\google\GoogleMapsApiKey.txt -Raw)
 
 Write-Host $key
 
-Get-ChildItem '.\bin\Release\net5.0\linux-arm\publish\ClientApp\dist\main*.js' -Recurse | ForEach {
+Get-ChildItem '.\bin\Release\net5.0\linux-arm\publish\ClientApp\dist\*.*' -Recurse | ForEach {
 	Write-Host $_
 
 	$content = [System.IO.File]::ReadAllText($_).Replace("YOUR_GOOGLE_MAPS_API_KEY", $key)
