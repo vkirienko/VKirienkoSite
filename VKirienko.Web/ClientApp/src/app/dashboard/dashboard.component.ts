@@ -102,11 +102,22 @@ export class DashboardComponent implements OnInit {
   }
 
   private getChartOptions(data: number[]): Chartist.ILineChartOptions {
-    const chartOptions: Chartist.ILineChartOptions = {
-      lineSmooth: Chartist.Interpolation.cardinal({ tension: 0 }),
-      low: Math.min.apply(null, data.filter(n => n != null && n != 0)),
-      high: Math.max.apply(null, data.filter(n => n != null && n != 0)),
-      chartPadding: { top: 0, right: 0, bottom: 0, left: 0 }
+    const min = Math.min.apply(null, data.filter(n => n != null));
+    const max = Math.max.apply(null, data.filter(n => n != null));
+
+    const chartOptions: Chartist.ILineChartOptions = { 
+      lineSmooth: Chartist.Interpolation.cardinal({
+        tension: 0
+      }),
+      low: Math.floor(min - (max-min) * 0.05),
+      high: Math.ceil(max + (max - min) * 0.05),
+      chartPadding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+      },
+      showArea: true
     };
 
     return chartOptions;

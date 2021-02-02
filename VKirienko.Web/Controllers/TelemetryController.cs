@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VKirienko.Web.Core;
 using VKirienko.Web.Data;
 using VKirienko.Web.Data.Model;
 using VKirienko.Web.ViewModel;
@@ -58,7 +59,6 @@ namespace VKirienko.Web.Controllers
                     (t.Date - startDate).TotalMinutes < (i + 1) * sampleSize);
 
                 var sampleDate = today.AddMinutes(-(samples - i) * sampleSize).ToLocalTime();
-
                 telemetry.Add(new SensorTelemetryViewModel {
                     Date = sampleDate,
                     Temperature = Average(window, d => d.Temperature),
@@ -67,6 +67,17 @@ namespace VKirienko.Web.Controllers
                     Tvoc = Average(window, d => d.Tvoc),
                     Radiation = Average(window, d => d.Radiation)
                 });
+                /*
+                telemetry.Add(new SensorTelemetryViewModel
+                {
+                    Date = sampleDate,
+                    Temperature = Median(window, d => d.Temperature),
+                    Humidity = Median(window, d => d.Humidity),
+                    Pressure = Median(window, d => d.Pressure),
+                    Tvoc = Median(window, d => d.Tvoc),
+                    Radiation = Median(window, d => d.Radiation)
+                });
+                */
             }
 
             return telemetry;
@@ -82,6 +93,19 @@ namespace VKirienko.Web.Controllers
 
                 return data.Average(d => selector(d));
             }
+/*
+            double? Median(IEnumerable<SensorTelemetry> data, Func<SensorTelemetry, double> selector)
+            {
+                if (!data.Any())
+                    return null;
+
+                data = data.Where(d => selector(d) != 0);
+                if (!data.Any())
+                    return null;
+
+                return data.Select(d => selector(d)).Median();
+            }
+*/
         }
 
         // POST: api/Telemetry/bme680
