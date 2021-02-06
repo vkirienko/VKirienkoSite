@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+.no-webp .sidebar-background {
+    background-image: url("/assets/img/sidebar-4.jpg");
+}
+.webp .sidebar-background {
+    background-image: url("/assets/img-min/sidebar-4.webp");
+}
