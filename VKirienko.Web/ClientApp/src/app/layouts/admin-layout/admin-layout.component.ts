@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location, PopStateEvent } from '@angular/common';
 import { filter } from 'rxjs/operators';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import PerfectScrollbar from 'perfect-scrollbar';
 
 @Component({
