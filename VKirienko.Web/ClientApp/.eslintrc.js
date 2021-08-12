@@ -17,7 +17,16 @@ module.exports = {
       "modules": true
     }
   },
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "settings": {},
   "rules": {
+    '@typescript-eslint/no-this-alias': [
+      'error',
+      {
+        allowedNames: ['self'], // Allow `const self = this`; `[]` by default
+      },
+    ]
   }
 };

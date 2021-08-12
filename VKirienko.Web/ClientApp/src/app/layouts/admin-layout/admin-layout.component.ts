@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Location, PopStateEvent } from '@angular/common';
 import { filter } from 'rxjs/operators';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
-import { Subscription } from 'rxjs';
 import PerfectScrollbar from 'perfect-scrollbar';
 
 @Component({
@@ -10,7 +9,6 @@ import PerfectScrollbar from 'perfect-scrollbar';
   templateUrl: './admin-layout.component.html'
 })
 export class AdminLayoutComponent implements OnInit {
-  private _router: Subscription;
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
 
@@ -46,7 +44,7 @@ export class AdminLayoutComponent implements OnInit {
       }
     });
 
-    this._router = this.router.events.pipe(
+    this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
       elemMainPanel.scrollTop = 0;

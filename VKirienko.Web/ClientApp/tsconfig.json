@@ -1,13 +1,25 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "module": "es2020",
-    "outDir": "./dist/out-tsc",
     "baseUrl": "src",
+    "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
+    "module": "es2020",
     "moduleResolution": "node",
     "experimentalDecorators": true,
+    //"strict": true,
+    //"noImplicitAny": true,                 
+    //"strictNullChecks": true,              
+    //"strictFunctionTypes": true,           
+    "strictBindCallApply": true,
+    //"strictPropertyInitialization": true,  
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
     "target": "es2016",
     "typeRoots": [
       "node_modules/@types"
@@ -16,5 +28,11 @@
       "es2017",
       "dom"
     ]
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    //"strictTemplates": true,
+    "strictInputAccessModifiers": true
   }
 }

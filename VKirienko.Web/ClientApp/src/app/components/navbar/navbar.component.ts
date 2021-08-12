@@ -94,7 +94,7 @@ export class NavbarComponent implements OnInit {
         $layer.classList.add('visible');
       }, 100);
 
-      $layer.onclick = function () { //asign a function
+      $layer.addEventListener("click", () => { 
         body.classList.remove('nav-open');
         this.mobile_menu_visible = 0;
         $layer.classList.remove('visible');
@@ -102,7 +102,7 @@ export class NavbarComponent implements OnInit {
           $layer.remove();
           $toggle.classList.remove('toggled');
         }, 400);
-      }.bind(this);
+      });
 
       body.classList.add('nav-open');
       this.mobile_menu_visible = 1;
