@@ -30,7 +30,7 @@ namespace VKirienko.Web
 
             services.AddSingleton(settings);
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddMvc();
             services.AddControllersWithViews();
             services.AddRazorPages();
             
