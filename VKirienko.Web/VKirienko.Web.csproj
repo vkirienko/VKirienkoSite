@@ -71,6 +71,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="ClientApp\a.cmd" />
     <None Remove="ClientApp\a.cmd" />
     <None Remove="ClientApp\src\app\security\security-report-url.ts" />
@@ -80,6 +84,10 @@
     <Folder Include="ClientApp\src\app\about\" />
     <Folder Include="ClientApp\src\app\contacts\" />
     <Folder Include="ClientApp\src\app\resume\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="tsconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
