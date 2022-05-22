@@ -364,3 +364,5 @@ FodyWeavers.xsd
 /.vs
 /VKirienko.Web/ClientApp/0
 /VKirienko.Web/ClientApp/src/assets/img-min
+
+/.angular

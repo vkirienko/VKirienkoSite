@@ -13,9 +13,6 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 import { faGlobe, faAddressCard, faHeart, faStar } from '@fortawesome/free-solid-svg-icons'
 import { faWindows, faGithub } from '@fortawesome/free-brands-svg-icons';
 
-import {
-  AgmCoreModule
-} from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
 @NgModule({
@@ -26,10 +23,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     FontAwesomeModule,
     ComponentsModule,
     RouterModule,
-    AppRoutingModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    })
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
