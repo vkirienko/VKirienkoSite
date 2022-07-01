@@ -20,7 +20,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
-    "target": "es2016",
+    "target": "es2020",
     "typeRoots": [
       "node_modules/@types"
     ],
