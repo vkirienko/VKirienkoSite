@@ -1,16 +1,16 @@
 using AspNetCore.Proxy;
-using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using VKirienko.Web.Data;
+using VKirienko.Web.Services;
 using VKirienko.Web.Settings;
+using VKirienko.Web.SignalR;
 
 namespace VKirienko.Web
 {
@@ -33,9 +33,15 @@ namespace VKirienko.Web
             services.AddMvc();
             services.AddControllersWithViews();
             services.AddRazorPages();
-            
             services.AddProxies();
+            services.AddSignalR();
+
             services.AddAutoMapper(typeof(Startup));
+
+#if DEBUG
+            services.AddSingleton<TimerManager>();
+#endif
+            services.AddScoped<ITelemetryService, TelemetryService>();
 
             services.AddDbContext<IoTContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("IoTDatabase")));
@@ -64,6 +70,7 @@ namespace VKirienko.Web
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseSpaStaticFiles();
@@ -79,6 +86,7 @@ namespace VKirienko.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("default", "{controller}/{action=Index}/{id?}");
+                endpoints.MapHub<TelemetryHub>("/telemetry");
             });
 
             app.UseSpa(spa =>

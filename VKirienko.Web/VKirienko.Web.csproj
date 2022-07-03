@@ -43,31 +43,25 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
-    <Compile Remove="ClientApp.old2\**" />
-    <Compile Remove="ClientApp.old\**" />
+    <Compile Remove="ClientApp\.cache\**" />
     <Compile Remove="ClientApp\dist\**" />
-    <Compile Remove="ClientApp\src\app\admin\**" />
     <Compile Remove="ClientApp\typings\**" />
     <Content Remove="$(SpaRoot)**" />
-    <Content Remove="ClientApp.old2\**" />
-    <Content Remove="ClientApp.old\**" />
+    <Content Remove="ClientApp\.cache\**" />
     <Content Remove="ClientApp\dist\**" />
-    <Content Remove="ClientApp\src\app\admin\**" />
     <Content Remove="ClientApp\typings\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Remove="ClientApp.old2\**" />
-    <EmbeddedResource Remove="ClientApp.old\**" />
+    <EmbeddedResource Remove="ClientApp\.cache\**" />
     <EmbeddedResource Remove="ClientApp\dist\**" />
-    <EmbeddedResource Remove="ClientApp\src\app\admin\**" />
     <EmbeddedResource Remove="ClientApp\typings\**" />
-    <None Remove="ClientApp.old2\**" />
-    <None Remove="ClientApp.old\**" />
+    <None Remove="ClientApp\.cache\**" />
     <None Remove="ClientApp\dist\**" />
-    <None Remove="ClientApp\src\app\admin\**" />
     <None Remove="ClientApp\typings\**" />
+    <TypeScriptCompile Remove="ClientApp\.cache\**" />
+    <TypeScriptCompile Remove="ClientApp\node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -78,12 +72,6 @@
     <None Remove="ClientApp\a.cmd" />
     <None Remove="ClientApp\a.cmd" />
     <None Remove="ClientApp\src\app\security\security-report-url.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\src\app\about\" />
-    <Folder Include="ClientApp\src\app\contacts\" />
-    <Folder Include="ClientApp\src\app\resume\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -122,21 +110,5 @@
   </Target>
 
   <ProjectExtensions><VisualStudio><UserProperties clientapp_4package_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
-
-  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <TypeScriptTarget>ESNext</TypeScriptTarget>
-    <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
-    <TypeScriptModuleKind>ES6</TypeScriptModuleKind>
-    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
-    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
-    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
-    <TypeScriptOutFile />
-    <TypeScriptOutDir />
-    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
-    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
-    <TypeScriptSourceMap>True</TypeScriptSourceMap>
-    <TypeScriptMapRoot />
-    <TypeScriptSourceRoot />
-  </PropertyGroup>
 
 </Project>

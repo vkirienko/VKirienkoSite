@@ -1,23 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import * as Chartist from 'chartist';
 
-import { TelemetryService } from './telemetry.service';
-import { SensorTelemetry } from './sensor-telemetry.model';
+import { TelemetryService } from './services/telemetry.service';
+import { TelemetrySignalrService } from './services/telemetry-signalr.service';
+import { SensorTelemetry } from './models/sensor-telemetry.model';
 
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html'
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   days = 7;
   samples = 84;
 
   labels: string[] = [];
 
   lastTelemetry: SensorTelemetry;
+  lastTelemetry$: Subscription;
 
-  constructor(private telemetryService: TelemetryService) {
+  constructor(
+    private telemetryService: TelemetryService,
+    public signalRService: TelemetrySignalrService) {
     this.labels = this.populateLabels();
   }
 
@@ -68,6 +73,20 @@ export class DashboardComponent implements OnInit {
         this.createTvocChart(telemetry);
         this.createRadiationChart(telemetry);
       });
+
+    this.signalRService.startConnection();
+
+    this.lastTelemetry$ = this.signalRService
+      .addLastTelemetryListener()
+      .subscribe(telemetry => {
+        console.log(telemetry);
+        this.lastTelemetry = telemetry;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.signalRService.stopConnection();
+    this.lastTelemetry$.unsubscribe();
   }
 
   private populateLabels(): string[] {

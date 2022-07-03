@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using VKirienko.Web.Core;
-using VKirienko.Web.Data;
 using VKirienko.Web.Data.Model;
+using VKirienko.Web.Services;
+using VKirienko.Web.SignalR;
 using VKirienko.Web.ViewModel;
 
 namespace VKirienko.Web.Controllers
@@ -17,95 +17,50 @@ namespace VKirienko.Web.Controllers
     {
         private static Gm10ViewModel _gm10ViewModel;
 
+        private readonly ITelemetryService _telemetryService;
         private readonly IMapper _mapper;
-        private readonly IoTContext _context;
+        private readonly IHubContext<TelemetryHub> _hub;
 
-        public TelemetryController(IoTContext context, IMapper mapper)
+#if DEBUG
+        private readonly TimerManager _timer;
+#endif
+
+        public TelemetryController(
+            ITelemetryService telemetryService,
+            IMapper mapper,
+            IHubContext<TelemetryHub> hub
+#if DEBUG
+            ,TimerManager timer
+#endif      
+            )
         {
-            _context = context;
+            _telemetryService = telemetryService;
             _mapper = mapper;
+            _hub = hub;
+#if DEBUG
+            _timer = timer;
+#endif      
         }
 
         // GET: api/Telemetry
         [HttpGet("")]
         public SensorTelemetryViewModel Get()
         {
-            var maxDate = _context.SensorTelemetry.Max(t => t.Date);
-            var telemetry = _context.SensorTelemetry.First(t => t.Date == maxDate);
-            telemetry.Date = telemetry.Date.ToLocalTime();
-            return _mapper.Map<SensorTelemetryViewModel>(telemetry);
-        }
+            var telemetry = _telemetryService.GetLastTelemetry();
 
+#if DEBUG
+            if (!_timer.IsTimerStarted)
+                _timer.PrepareTimer(() => SendLastTelemetry(telemetry));
+#endif      
+
+            return telemetry;
+        }
 
         // GET: api/Telemetry
         [HttpGet("{days}/{samples}")]
         public IEnumerable<SensorTelemetryViewModel> Get(int days, int samples)
         {
-            var today = DateTime.UtcNow;
-            var startDate = today.AddDays(-days);
-
-            var sampleSize = Math.Round((today - startDate).TotalMinutes / samples);
-
-            var rawTelemetry = _context.SensorTelemetry
-                .Where(t => t.Date >= startDate)
-                .ToList();
-
-            var telemetry = new List<SensorTelemetryViewModel>();
-
-            for (int i = 0; i < samples; i++)
-            {
-                var window = rawTelemetry.Where(t =>
-                    (t.Date - startDate).TotalMinutes >= i * sampleSize &&
-                    (t.Date - startDate).TotalMinutes < (i + 1) * sampleSize);
-
-                var sampleDate = today.AddMinutes(-(samples - i) * sampleSize).ToLocalTime();
-                telemetry.Add(new SensorTelemetryViewModel {
-                    Date = sampleDate,
-                    Temperature = Average(window, d => d.Temperature),
-                    Humidity = Average(window, d => d.Humidity),
-                    Pressure = Average(window, d => d.Pressure),
-                    Tvoc = Average(window, d => d.Tvoc),
-                    Radiation = Average(window, d => d.Radiation)
-                });
-                /*
-                telemetry.Add(new SensorTelemetryViewModel
-                {
-                    Date = sampleDate,
-                    Temperature = Median(window, d => d.Temperature),
-                    Humidity = Median(window, d => d.Humidity),
-                    Pressure = Median(window, d => d.Pressure),
-                    Tvoc = Median(window, d => d.Tvoc),
-                    Radiation = Median(window, d => d.Radiation)
-                });
-                */
-            }
-
-            return telemetry;
-
-            double? Average(IEnumerable<SensorTelemetry> data, Func<SensorTelemetry, double> selector)
-            {
-                if (!data.Any())
-                    return null;
-
-                data = data.Where(d => selector(d) != 0);
-                if (!data.Any())
-                    return null;
-
-                return data.Average(d => selector(d));
-            }
-/*
-            double? Median(IEnumerable<SensorTelemetry> data, Func<SensorTelemetry, double> selector)
-            {
-                if (!data.Any())
-                    return null;
-
-                data = data.Where(d => selector(d) != 0);
-                if (!data.Any())
-                    return null;
-
-                return data.Select(d => selector(d)).Median();
-            }
-*/
+            return _telemetryService.GetTelemetry(days, samples);        
         }
 
         // POST: api/Telemetry/bme680
@@ -120,10 +75,11 @@ namespace VKirienko.Web.Controllers
 
             MergeWithGm10ViewModel();
 
-            _context.SensorTelemetry.Add(telemetry);
-            
-            await _context.SaveChangesAsync();
-            
+            await _telemetryService.AddTelemetryAsync(telemetry);
+
+            var sensorTelemetryViewModel = _mapper.Map<SensorTelemetryViewModel>(telemetry);
+            await SendLastTelemetry(sensorTelemetryViewModel);
+
             return Ok();
 
             void MergeWithGm10ViewModel()
@@ -141,5 +97,14 @@ namespace VKirienko.Web.Controllers
             _gm10ViewModel = model;
             return Ok();
         }
+
+        #region Private methods
+
+        private Task SendLastTelemetry(SensorTelemetryViewModel telemetry)
+        {
+            return _hub.Clients.All.SendAsync("LastTelemetry", telemetry);
+        }
+
+        #endregion
     }
 }

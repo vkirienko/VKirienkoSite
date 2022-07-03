@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { SensorTelemetry } from './sensor-telemetry.model';
+import { SensorTelemetry } from '../models/sensor-telemetry.model';
 
 @Injectable({
   providedIn: 'root'
