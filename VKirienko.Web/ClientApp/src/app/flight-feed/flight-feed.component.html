@@ -5,7 +5,7 @@
         <i class="material-icons">send</i>
       </div>
     </div>
-    <div class="card-body">
+    <div class="card-body" *ngIf="settings">
       <br />
       <br />
       <a href="{{settings.adsbExchange.url}}{{settings.adsbExchange.userName}}" target="_new" rel="noreferrer">
