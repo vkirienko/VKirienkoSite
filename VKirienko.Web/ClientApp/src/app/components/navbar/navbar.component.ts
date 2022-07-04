@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit {
   private listTitles: RouteInfo[];
   location: Location;
   mobile_menu_visible = 0;
-  private toggleButton: any;
+  private toggleButton: Element;
   private sidebarVisible: boolean;
 
   constructor(location: Location, private element: ElementRef, private router: Router) {
