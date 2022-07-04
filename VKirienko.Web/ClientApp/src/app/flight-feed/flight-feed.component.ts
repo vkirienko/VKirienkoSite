@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { SettingsService } from '../core/services/settings.service';
+import { Settings } from '../core/models/settings.model';
+
+
 @Component({
   selector: 'app-flight-feed',
   templateUrl: './flight-feed.component.html',
@@ -7,11 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlightFeedComponent implements OnInit {
 
-  constructor() {
-    // do nothing
+  settings: Settings;
+
+  constructor(
+    private settingsService: SettingsService) {
   }
 
   ngOnInit(): void {
-    // do nothing
+    this.settingsService.get()
+      .subscribe(settings => {
+        this.settings = settings;
+      });
   }
 }

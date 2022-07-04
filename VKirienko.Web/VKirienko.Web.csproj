@@ -23,7 +23,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AspNetCore.Proxy" Version="4.4.0" />
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="3.1.26" />
@@ -45,10 +44,12 @@
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Compile Remove="ClientApp\.cache\**" />
     <Compile Remove="ClientApp\dist\**" />
+    <Compile Remove="ClientApp\src\app\services\**" />
     <Compile Remove="ClientApp\typings\**" />
     <Content Remove="$(SpaRoot)**" />
     <Content Remove="ClientApp\.cache\**" />
     <Content Remove="ClientApp\dist\**" />
+    <Content Remove="ClientApp\src\app\services\**" />
     <Content Remove="ClientApp\typings\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
@@ -56,12 +57,15 @@
   <ItemGroup>
     <EmbeddedResource Remove="ClientApp\.cache\**" />
     <EmbeddedResource Remove="ClientApp\dist\**" />
+    <EmbeddedResource Remove="ClientApp\src\app\services\**" />
     <EmbeddedResource Remove="ClientApp\typings\**" />
     <None Remove="ClientApp\.cache\**" />
     <None Remove="ClientApp\dist\**" />
+    <None Remove="ClientApp\src\app\services\**" />
     <None Remove="ClientApp\typings\**" />
     <TypeScriptCompile Remove="ClientApp\.cache\**" />
     <TypeScriptCompile Remove="ClientApp\node_modules\**" />
+    <TypeScriptCompile Remove="ClientApp\src\app\services\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -80,6 +84,10 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\security\security-report-url.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\core\models\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

@@ -1,4 +1,3 @@
-using AspNetCore.Proxy;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -33,7 +32,6 @@ namespace VKirienko.Web
             services.AddMvc();
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddProxies();
             services.AddSignalR();
 
             services.AddAutoMapper(typeof(Startup));
@@ -74,14 +72,6 @@ namespace VKirienko.Web
             app.UseStaticFiles();
             app.UseRouting();
             app.UseSpaStaticFiles();
-
-            app.UseProxies(proxies =>
-            {
-                proxies.Map("adsb/fa-stats", proxy => proxy.UseHttp($"{settings.FlightAware.Url}{settings.FlightAware.UserName}"));
-                proxies.Map("adsb/fr24-stats", proxy => proxy.UseHttp($"{settings.FlightRadar24.Url}{settings.FlightRadar24.UserName}"));
-                proxies.Map("adsb/rb-stats", proxy => proxy.UseHttp($"{settings.RadarBox.Url}{settings.RadarBox.UserName}"));
-                proxies.Map("adsb/ae-stats", proxy => proxy.UseHttp($"{settings.AdsbExchange.Url}{settings.AdsbExchange.UserName}"));
-            });
 
             app.UseEndpoints(endpoints =>
             {
