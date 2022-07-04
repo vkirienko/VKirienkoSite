@@ -18,6 +18,7 @@ export class TelemetrySignalrService {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
       })
+      .withAutomaticReconnect()
       .build();
 
     this.hubConnection
@@ -38,7 +39,13 @@ export class TelemetrySignalrService {
       this.lastTelemetry$.next(data);
     });
 
+    this.hubConnection.onreconnected(connectionId => {
+      console.assert(this.hubConnection.state === signalR.HubConnectionState.Connected);
+      console.log('connectionId = ' + connectionId);
+    });
+
     this.hubConnection.onclose((err?: Error) => {
+      console.log('Connection closed')
       if (err) {
         // An error occurs
         this.lastTelemetry$.error(err);
