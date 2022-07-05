@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import * as Chartist from 'chartist';
 
 import { TelemetryService } from './services/telemetry.service';
@@ -7,6 +8,7 @@ import { TelemetrySignalrService } from './services/telemetry-signalr.service';
 import { SensorTelemetry } from './models/sensor-telemetry.model';
 
 
+@UntilDestroy()
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html'
@@ -22,7 +24,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   constructor(
     private telemetryService: TelemetryService,
-    public signalRService: TelemetrySignalrService) {
+    private signalRService: TelemetrySignalrService) {
     this.labels = this.populateLabels();
   }
 
@@ -78,6 +80,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     this.lastTelemetry$ = this.signalRService
       .addLastTelemetryListener()
+      .pipe(untilDestroyed(this))
       .subscribe(telemetry => {
         console.log(telemetry);
         this.lastTelemetry = telemetry;
@@ -86,7 +89,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.signalRService.stopConnection();
-    this.lastTelemetry$.unsubscribe();
   }
 
   private populateLabels(): string[] {
