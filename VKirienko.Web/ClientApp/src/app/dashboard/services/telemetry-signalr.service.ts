@@ -42,7 +42,6 @@ export class TelemetrySignalrService {
 
     this.hubConnection.onreconnected((connectionId?: string) => {
       console.assert(this.hubConnection.state === signalR.HubConnectionState.Connected);
-      console.log('ConnectionId = ' + connectionId);
     });
 
     this.hubConnection.onclose((err?: Error) => {
