@@ -10,7 +10,7 @@ RestartSec=10
 KillSignal=SIGINT
 SyslogIdentifier=vkirienko-web
 User=vlad
-Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=ASPNETCORE_ENVIRONMENT=Release
 Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
 
 [Install]
