@@ -362,6 +362,8 @@ MigrationBackup/
 FodyWeavers.xsd
 
 /.vs
+/VKirienko.Web/appsettings.secrets.Development.json
+/VKirienko.Web/appsettings.secrets.Release.json
 /VKirienko.Web/ClientApp/0
 /VKirienko.Web/ClientApp/src/assets/img-min
 

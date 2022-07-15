@@ -1,4 +1,6 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
+
+import { LoggingService } from './core/services/logging.service';
 
 
 @Component({
@@ -6,5 +8,7 @@ import { Component} from '@angular/core';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-
+  constructor(private loggingService: LoggingService) {
+    this.loggingService.logEvent('Session started');
+  }
 }

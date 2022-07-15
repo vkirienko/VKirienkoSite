@@ -1,5 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -14,6 +14,8 @@ import { faGlobe, faAddressCard, faHeart, faStar } from '@fortawesome/free-solid
 import { faWindows, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { ErrorHandlerService } from './core/services/error-handler.service';
+import { LoggingService } from './core/services/logging.service';
 
 @NgModule({
   imports: [
@@ -28,9 +30,11 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-
   ],
-  providers: [],
+  providers: [
+    LoggingService,
+    { provide: ErrorHandler, useClass: ErrorHandlerService }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

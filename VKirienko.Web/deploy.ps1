@@ -3,13 +3,29 @@
 
 & dotnet publish -c Release -r linux-arm --sc
 
-$key = (Get-Content -path ..\..\Raspberry\google\GoogleMapsApiKey.txt -Raw)
 
-Write-Host $key
+$googleMapsApiKey = (Get-Content -path ..\..\Raspberry\google\GoogleMapsApiKey.txt -Raw)
+
+Write-Host ""
+Write-Host $googleMapsApiKey
 
 Get-ChildItem '.\bin\Release\net6.0\linux-arm\publish\ClientApp\dist\*.html' -Recurse | ForEach {
 	Write-Host $_
 
-	$content = [System.IO.File]::ReadAllText($_).Replace("YOUR_GOOGLE_MAPS_API_KEY", $key)
+	$content = [System.IO.File]::ReadAllText($_).Replace("YOUR_GOOGLE_MAPS_API_KEY", $googleMapsApiKey)
+	[System.IO.File]::WriteAllText($_, $content)
+}
+
+
+$appInsightsConnectionString = (Get-Content -path ..\..\Raspberry\app-secrets\appinsights.release.txt -Raw)
+
+Write-Host ""
+Write-Host $appInsightsConnectionString
+
+Get-ChildItem '.\bin\Release\net6.0\linux-arm\publish\ClientApp\dist\*.js' -Recurse | ForEach {
+	Write-Host $_
+
+	$content = [System.IO.File]::ReadAllText($_).Replace("YOUR_APP_INSIGHTS_CONNECTION_STRING", $appInsightsConnectionString)
+
 	[System.IO.File]::WriteAllText($_, $content)
 }

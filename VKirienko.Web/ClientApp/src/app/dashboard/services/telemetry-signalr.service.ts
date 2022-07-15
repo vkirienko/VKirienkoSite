@@ -40,10 +40,6 @@ export class TelemetrySignalrService {
       this.lastTelemetry$.next(data);
     });
 
-    this.hubConnection.onreconnected((connectionId?: string) => {
-      console.assert(this.hubConnection.state === signalR.HubConnectionState.Connected);
-    });
-
     this.hubConnection.onclose((err?: Error) => {
       console.log('Connection closed')
       if (err) {

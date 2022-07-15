@@ -29,6 +29,7 @@ namespace VKirienko.Web
 
             services.AddSingleton(settings);
 
+            services.AddApplicationInsightsTelemetry();
             services.AddMvc();
             services.AddControllersWithViews();
             services.AddRazorPages();
