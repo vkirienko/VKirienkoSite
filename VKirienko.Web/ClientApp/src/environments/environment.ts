@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  appInsightsConnectionString: 'YOUR_APP_INSIGHTS_CONNECTION_STRING'
+  appInsightsConnectionString: 'InstrumentationKey=ede10aaa-54d6-486c-8dd4-37668cce2cb1;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/'
 };
