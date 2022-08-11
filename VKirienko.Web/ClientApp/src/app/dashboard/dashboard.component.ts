@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import * as Chartist from 'chartist';
+import { LineChart, Svg, LineChartOptions, Interpolation, LineChartData } from 'chartist'
 
 import { TelemetryService } from './services/telemetry.service';
 import { TelemetrySignalrService } from './services/telemetry-signalr.service';
@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.labels = this.populateLabels();
   }
 
-  startAnimation(chart: Chartist.IChartistLineChart): void {
+  startAnimation(chart: LineChart): void {
     let seq = 0;
     const delays = 80;
     const durations = 500;
@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             dur: 700,
             from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
             to: data.path.clone().stringify(),
-            easing: Chartist.Svg.Easing.easeOutQuint
+            easing: Svg.Easing.easeOutQuint
           }
         });
       } else if (data.type === 'point') {
@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             dur: durations,
             from: 0,
             to: 1,
-            easing: 'ease'
+            easing: Svg.Easing.easeOutQuint
           }
         });
       }
@@ -111,7 +111,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return labels;
   }
 
-  private getChartData(data: number[]): Chartist.IChartistData {
+  private getChartData(data: number[]): LineChartData {
     const chartData = {
       labels: this.labels,
       series: [] 
@@ -119,15 +119,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     chartData.series.push(data);
 
-    return chartData as Chartist.IChartistData;
+    return chartData as LineChartData;
   }
 
-  private getChartOptions(data: number[]): Chartist.ILineChartOptions {
+  private getChartOptions(data: number[]): LineChartOptions {
     const min = Math.min.apply(null, data.filter(n => n != null));
     const max = Math.max.apply(null, data.filter(n => n != null));
 
-    const chartOptions: Chartist.ILineChartOptions = { 
-      lineSmooth: Chartist.Interpolation.cardinal({
+    const chartOptions: LineChartOptions = { 
+      lineSmooth: Interpolation.cardinal({
         tension: 0
       }),
       low: Math.floor(min - (max-min) * 0.05),
@@ -147,30 +147,30 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private createTemperatureChart(telemetry: SensorTelemetry[]): void {
     const data = telemetry.map(t => t.temperature);
 
-    this.startAnimation(new Chartist.Line('#temperatureChart', this.getChartData(data), this.getChartOptions(data)));
+    this.startAnimation(new LineChart('#temperatureChart', this.getChartData(data), this.getChartOptions(data)));
   }
 
   private createHumidityChart(telemetry: SensorTelemetry[]): void {
     const data = telemetry.map(t => t.humidity);
 
-    this.startAnimation(new Chartist.Line('#humidityChart', this.getChartData(data), this.getChartOptions(data)));
+    this.startAnimation(new LineChart('#humidityChart', this.getChartData(data), this.getChartOptions(data)));
   }
 
   private createPressureChart(telemetry: SensorTelemetry[]): void {
     const data = telemetry.map(t => t.pressure);
 
-    this.startAnimation(new Chartist.Line('#pressureChart', this.getChartData(data), this.getChartOptions(data)));
+    this.startAnimation(new LineChart('#pressureChart', this.getChartData(data), this.getChartOptions(data)));
   }
 
   private createTvocChart(telemetry: SensorTelemetry[]): void {
     const data = telemetry.map(t => t.tvoc == null ? null : t.tvoc / 100000);
 
-    this.startAnimation(new Chartist.Line('#tvocChart', this.getChartData(data), this.getChartOptions(data)));
+    this.startAnimation(new LineChart('#tvocChart', this.getChartData(data), this.getChartOptions(data)));
   }
 
   private createRadiationChart(telemetry: SensorTelemetry[]): void {
     const data = telemetry.map(t => t.radiation);
 
-    this.startAnimation(new Chartist.Line('#radiationChart', this.getChartData(data), this.getChartOptions(data)));
+    this.startAnimation(new LineChart('#radiationChart', this.getChartData(data), this.getChartOptions(data)));
   }
 }
