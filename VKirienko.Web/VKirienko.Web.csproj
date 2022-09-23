@@ -26,18 +26,18 @@
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.21.0" />
-    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="6.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.8">
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="6.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.9" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.8.2">
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.8.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.8" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.9" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,12 +45,10 @@
     <Compile Remove="ClientApp\.cache\**" />
     <Compile Remove="ClientApp\dist\**" />
     <Compile Remove="ClientApp\src\app\services\**" />
-    <Compile Remove="ClientApp\typings\**" />
     <Content Remove="$(SpaRoot)**" />
     <Content Remove="ClientApp\.cache\**" />
     <Content Remove="ClientApp\dist\**" />
     <Content Remove="ClientApp\src\app\services\**" />
-    <Content Remove="ClientApp\typings\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
@@ -58,11 +56,9 @@
     <EmbeddedResource Remove="ClientApp\.cache\**" />
     <EmbeddedResource Remove="ClientApp\dist\**" />
     <EmbeddedResource Remove="ClientApp\src\app\services\**" />
-    <EmbeddedResource Remove="ClientApp\typings\**" />
     <None Remove="ClientApp\.cache\**" />
     <None Remove="ClientApp\dist\**" />
     <None Remove="ClientApp\src\app\services\**" />
-    <None Remove="ClientApp\typings\**" />
     <TypeScriptCompile Remove="ClientApp\.cache\**" />
     <TypeScriptCompile Remove="ClientApp\node_modules\**" />
     <TypeScriptCompile Remove="ClientApp\src\app\services\**" />
