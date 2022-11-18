@@ -9,7 +9,7 @@ $googleMapsApiKey = (Get-Content -path ..\..\Raspberry\google\GoogleMapsApiKey.t
 Write-Host ""
 Write-Host $googleMapsApiKey
 
-Get-ChildItem '.\bin\Release\net6.0\linux-arm\publish\ClientApp\dist\*.html' -Recurse | ForEach {
+Get-ChildItem '.\bin\Release\net7.0\linux-arm\publish\ClientApp\dist\*.html' -Recurse | ForEach {
 	Write-Host $_
 
 	$content = [System.IO.File]::ReadAllText($_).Replace("YOUR_GOOGLE_MAPS_API_KEY", $googleMapsApiKey)
@@ -22,7 +22,7 @@ $appInsightsConnectionString = (Get-Content -path ..\..\Raspberry\app-secrets\ap
 Write-Host ""
 Write-Host $appInsightsConnectionString
 
-Get-ChildItem '.\bin\Release\net6.0\linux-arm\publish\ClientApp\dist\*.js' -Recurse | ForEach {
+Get-ChildItem '.\bin\Release\net7.0\linux-arm\publish\ClientApp\dist\*.js' -Recurse | ForEach {
 	Write-Host $_
 
 	$content = [System.IO.File]::ReadAllText($_).Replace("YOUR_APP_INSIGHTS_CONNECTION_STRING", $appInsightsConnectionString)
