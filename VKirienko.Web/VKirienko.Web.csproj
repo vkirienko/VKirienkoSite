@@ -83,6 +83,7 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\src\app\core\models\" />
+    <Folder Include="ClientApp\src\app\shared\" />
   </ItemGroup>
 
   <ItemGroup>
