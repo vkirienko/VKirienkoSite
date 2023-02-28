@@ -8,7 +8,7 @@ import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { ResumeComponent } from '../../resume/resume.component';
 import { SecurityComponent } from '../../security/security.component';
 
-export const AdminLayoutRoutes: Routes = [
+export const adminLayoutRoutes: Routes = [
     { path: 'about',      	  component: AboutComponent },
     { path: 'contacts',    	  component: ContactsComponent },
     { path: 'dashboard',      component: DashboardComponent },

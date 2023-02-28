@@ -1,16 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { faLinkedin, faGitSquare } from '@fortawesome/free-brands-svg-icons';
-import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
-  selector: 'app-contacts',
-  templateUrl: './contacts.component.html'
+    selector: 'app-contacts',
+    templateUrl: './contacts.component.html',
+    standalone: true,
+    imports: [FontAwesomeModule]
 })
 export class ContactsComponent implements OnInit {
-  faLinkedin = faLinkedin;
-  faGitSquare = faGitSquare;
-  faPhone = faPhone;
-  faEnvelope = faEnvelope;
 
   ngOnInit(): void {
     this.initMap();

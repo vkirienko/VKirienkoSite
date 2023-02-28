@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
-  selector: 'app-resume',
-  templateUrl: './resume.component.html'
+    selector: 'app-resume',
+    templateUrl: './resume.component.html',
+    standalone: true,
+    imports: [FontAwesomeModule]
 })
 export class ResumeComponent {
-  faDownload = faDownload;
 }

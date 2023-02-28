@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { DecimalPipe, DatePipe } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { LineChart, Svg, LineChartOptions, Interpolation, LineChartData } from 'chartist'
@@ -10,8 +11,10 @@ import { SensorTelemetry } from './models/sensor-telemetry.model';
 
 @UntilDestroy()
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html'
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    standalone: true,
+    imports: [DecimalPipe, DatePipe]
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   days = 7;

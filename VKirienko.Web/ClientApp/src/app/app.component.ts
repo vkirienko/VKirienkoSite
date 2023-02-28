@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 import { LoggingService } from './core/services/logging.service';
 
-
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html'
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    standalone: true,
+    imports: [RouterOutlet]
 })
 export class AppComponent {
   constructor(private loggingService: LoggingService) {

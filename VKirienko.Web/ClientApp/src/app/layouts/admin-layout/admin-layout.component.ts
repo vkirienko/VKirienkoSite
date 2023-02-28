@@ -1,14 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Location, PopStateEvent } from '@angular/common';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Location, PopStateEvent, NgIf } from '@angular/common';
 import { filter } from 'rxjs/operators';
-import { Router, RouterEvent, NavigationEnd, NavigationStart } from '@angular/router';
+import { Router, RouterEvent, NavigationEnd, NavigationStart, RouterOutlet } from '@angular/router';
 import PerfectScrollbar from 'perfect-scrollbar';
 
+import { FooterComponent } from '../../components/footer/footer.component';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { SidebarComponent } from '../../components/sidebar/sidebar.component';
+
 @Component({
-  selector: 'app-admin-layout',
-  templateUrl: './admin-layout.component.html'
+    selector: 'app-admin-layout',
+    templateUrl: './admin-layout.component.html',
+    standalone: true,
+    imports: [SidebarComponent, NavbarComponent, RouterOutlet, NgIf, FooterComponent]
 })
-export class AdminLayoutComponent implements OnInit {
+export class AdminLayoutComponent implements OnInit, AfterViewInit {
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
 

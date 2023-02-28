@@ -1,11 +1,13 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { ROUTES, RouteInfo } from '../sidebar/sidebar.component';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
+import { ROUTES, RouteInfo } from '../sidebar/sidebar.component';
+
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html'
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    standalone: true
 })
 export class NavbarComponent implements OnInit {
   private listTitles: RouteInfo[];
