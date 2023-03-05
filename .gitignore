@@ -368,3 +368,4 @@ FodyWeavers.xsd
 /VKirienko.Web/ClientApp/src/assets/img-min
 
 .angular/
+/database/IoT.db

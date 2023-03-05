@@ -1,12 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DecimalPipe, DatePipe } from '@angular/common';
-import { Subscription } from 'rxjs';
+import { DatePipe, DecimalPipe } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { LineChart, Svg, LineChartOptions, Interpolation, LineChartData } from 'chartist'
+import { Interpolation, LineChart, LineChartData, LineChartOptions } from 'chartist';
+import { Subscription } from 'rxjs';
 
-import { TelemetryService } from './services/telemetry.service';
-import { TelemetrySignalrService } from './services/telemetry-signalr.service';
 import { SensorTelemetry } from './models/sensor-telemetry.model';
+import { TelemetrySignalrService } from './services/telemetry-signalr.service';
+import { TelemetryService } from './services/telemetry.service';
 
 
 @UntilDestroy()
@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             dur: 700,
             from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
             to: data.path.clone().stringify(),
-            easing: Svg.Easing.easeOutQuint
+            easing: 'easeOutQuint'
           }
         });
       } else if (data.type === 'point') {
@@ -55,7 +55,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             dur: durations,
             from: 0,
             to: 1,
-            easing: Svg.Easing.easeOutQuint
+            easing: 'easeOutQuint'
           }
         });
       }

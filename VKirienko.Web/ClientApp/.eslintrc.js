@@ -16,10 +16,12 @@ module.exports = {
     "sourceType": "module"
   },
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
+	"deprecation"
   ],
   "settings": {},
   "rules": {
+	"deprecation/deprecation": "warn",
     '@typescript-eslint/no-this-alias': [
       'error',
       {

@@ -1,8 +1,8 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Location, PopStateEvent, NgIf } from '@angular/common';
-import { filter } from 'rxjs/operators';
-import { Router, RouterEvent, NavigationEnd, NavigationStart, RouterOutlet } from '@angular/router';
+import { Location, NgIf, PopStateEvent } from '@angular/common';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { NavigationEnd, NavigationStart, Router, RouterEvent, RouterOutlet } from '@angular/router';
 import PerfectScrollbar from 'perfect-scrollbar';
+import { filter } from 'rxjs/operators';
 
 import { FooterComponent } from '../../components/footer/footer.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
@@ -21,14 +21,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
   constructor(public location: Location, private router: Router) { }
 
   ngOnInit(): void {
-    const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
-
-    if (isWindows && !document.getElementsByTagName('body')[0].classList.contains('sidebar-mini')) {
-      // if we are on windows OS we activate the perfectScrollbar function
-      document.getElementsByTagName('body')[0].classList.add('perfect-scrollbar-on');
-    } else {
-      document.getElementsByTagName('body')[0].classList.remove('perfect-scrollbar-off');
-    }
+    document.getElementsByTagName('body')[0].classList.add('perfect-scrollbar-on');
 
     const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
     const elemSidebar = <HTMLElement>document.querySelector('.sidebar .sidebar-wrapper');
@@ -57,7 +50,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
       elemSidebar.scrollTop = 0;
     });
 
-    if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
+    if (window.matchMedia(`(min-width: 960px)`).matches) {
       new PerfectScrollbar(elemMainPanel);
       new PerfectScrollbar(elemSidebar);
     }
@@ -79,18 +72,10 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
   }
 
   runOnRouteChange(): void {
-    if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
+    if (window.matchMedia(`(min-width: 960px)`).matches) {
       const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
       const ps = new PerfectScrollbar(elemMainPanel);
       ps.update();
     }
-  }
-
-  isMac(): boolean {
-    let bool = false;
-    if (navigator.platform.toUpperCase().indexOf('MAC') >= 0 || navigator.platform.toUpperCase().indexOf('IPAD') >= 0) {
-      bool = true;
-    }
-    return bool;
   }
 }
