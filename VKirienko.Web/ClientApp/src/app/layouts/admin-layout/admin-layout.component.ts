@@ -1,6 +1,6 @@
 import { Location, NgIf, PopStateEvent } from '@angular/common';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { NavigationEnd, NavigationStart, Router, RouterEvent, RouterOutlet } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router, Event, RouterEvent, RouterOutlet } from '@angular/router';
 import PerfectScrollbar from 'perfect-scrollbar';
 import { filter } from 'rxjs/operators';
 
@@ -30,22 +30,27 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
       this.lastPoppedUrl = ev.url;
     });
 
-    this.router.events.subscribe((event: RouterEvent) => {
-      if (event instanceof NavigationStart) {
-        if (event.url != this.lastPoppedUrl)
-          this.yScrollStack.push(window.scrollY);
-      } else if (event instanceof NavigationEnd) {
-        if (event.url == this.lastPoppedUrl) {
-          this.lastPoppedUrl = undefined;
-          window.scrollTo(0, this.yScrollStack.pop());
-        } else
-          window.scrollTo(0, 0);
-      }
-    });
+    this.router.events
+      .pipe(filter(event => event instanceof RouterEvent))
+      .subscribe((event: Event) => {
+        if (event instanceof NavigationStart) {
+          debugger;
+          if (event.url != this.lastPoppedUrl)
+            this.yScrollStack.push(window.scrollY);
+        } else if (event instanceof NavigationEnd) {
+          debugger;
+          if (event.url == this.lastPoppedUrl) {
+            this.lastPoppedUrl = undefined;
+            window.scrollTo(0, this.yScrollStack.pop());
+          } else
+            window.scrollTo(0, 0);
+        }
+      });
 
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
+      debugger;
       elemMainPanel.scrollTop = 0;
       elemSidebar.scrollTop = 0;
     });
