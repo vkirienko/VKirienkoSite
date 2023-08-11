@@ -34,11 +34,9 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
       .pipe(filter(event => event instanceof RouterEvent))
       .subscribe((event: Event) => {
         if (event instanceof NavigationStart) {
-          debugger;
           if (event.url != this.lastPoppedUrl)
             this.yScrollStack.push(window.scrollY);
         } else if (event instanceof NavigationEnd) {
-          debugger;
           if (event.url == this.lastPoppedUrl) {
             this.lastPoppedUrl = undefined;
             window.scrollTo(0, this.yScrollStack.pop());
@@ -50,7 +48,6 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
-      debugger;
       elemMainPanel.scrollTop = 0;
       elemSidebar.scrollTop = 0;
     });
