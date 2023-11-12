@@ -96,14 +96,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "vkirienko-site:build"
+            "buildTarget": "vkirienko-site:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "vkirienko-site:build:production"
+              "buildTarget": "vkirienko-site:build:production"
             },
             "development": {
-              "browserTarget": "vkirienko-site:build:development"
+              "buildTarget": "vkirienko-site:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -111,7 +111,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "vkirienko-site:build"
+            "buildTarget": "vkirienko-site:build"
           }
         }
       }
