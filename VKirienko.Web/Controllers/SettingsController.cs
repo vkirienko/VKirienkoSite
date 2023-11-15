@@ -6,14 +6,9 @@ namespace VKirienko.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SettingsController : ControllerBase
+    public class SettingsController(ApplicationSettings settings) : ControllerBase
     {
-        private readonly ApplicationSettings _settings;
-
-        public SettingsController(ApplicationSettings settings)
-        {
-            _settings = settings;
-        }
+        private readonly ApplicationSettings _settings = settings;
 
         // GET: api/Settings
         [HttpGet("")]

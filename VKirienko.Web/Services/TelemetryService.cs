@@ -9,18 +9,12 @@ using VKirienko.Web.ViewModel;
 
 namespace VKirienko.Web.Services
 {
-    public class TelemetryService : ITelemetryService
+    public class TelemetryService(
+        IoTContext context,
+        IMapper mapper) : ITelemetryService
     {
-        private readonly IoTContext _context;
-        private readonly IMapper _mapper;
-
-        public TelemetryService(
-            IoTContext context,
-            IMapper mapper)
-        {
-            _context = context;
-            _mapper = mapper;
-        }
+        private readonly IoTContext _context = context;
+        private readonly IMapper _mapper = mapper;
 
         public async Task<int> AddTelemetryAsync(SensorTelemetry telemetry)
         {
