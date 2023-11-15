@@ -17,11 +17,11 @@
       "projectType": "application",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "browser": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": [
               "zone.js"
@@ -48,9 +48,7 @@
               "node_modules/bootstrap-notify/bootstrap-notify.js",
               "src/js/modernizr-custom.js"
             ],
-            "vendorChunk": true,
             "extractLicenses": false,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
             "namedChunks": true
@@ -83,9 +81,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -103,7 +99,8 @@
               "buildTarget": "vkirienko-site:build:production"
             },
             "development": {
-              "buildTarget": "vkirienko-site:build:development"
+              "buildTarget": "vkirienko-site:build:development",
+              "proxyConfig": "proxy.conf.js"
             }
           },
           "defaultConfiguration": "development"
