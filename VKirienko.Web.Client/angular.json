@@ -12,12 +12,12 @@
       "projectType": "application",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist",
+            "outputPath": "dist/VKirienko.Web.Client",
             "index": "src/index.html",
-            "browser": "src/main.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "main": "src/main.ts",
+            "tsConfig": "tsconfig.app.json",
             "polyfills": [
               "zone.js"
             ],
@@ -46,7 +46,8 @@
             "extractLicenses": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "vendorChunk": true
           },
           "configurations": {
             "production": {
@@ -95,7 +96,7 @@
             },
             "development": {
               "buildTarget": "vkirienko-site:build:development",
-              "proxyConfig": "proxy.conf.js"
+              "proxyConfig": "src/proxy.conf.js"
             }
           },
           "defaultConfiguration": "development"

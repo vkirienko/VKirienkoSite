@@ -1,9 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2048
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKirienko.Web", "VKirienko.Web\VKirienko.Web.csproj", "{58C384F2-CEC6-425F-8B0E-DF92C2E3A2FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VKirienko.Web", "VKirienko.Web\VKirienko.Web.csproj", "{58C384F2-CEC6-425F-8B0E-DF92C2E3A2FB}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "VKirienko.Web.Client", "VKirienko.Web.Client\VKirienko.Web.Client.esproj", "{18266D94-B9A3-4B13-B8F6-A0A6D02C5BDE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2C9968D5-EAD0-4F40-8DA9-C5C632A37824}"
+	ProjectSection(SolutionItems) = preProject
+		install\deploy.ps1 = install\deploy.ps1
+		install\deploy2.ps1 = install\deploy2.ps1
+		install\install.sh = install\install.sh
+		install\pi-deploy.cmd = install\pi-deploy.cmd
+		install\vkirienko-web.service = install\vkirienko-web.service
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +26,12 @@ Global
 		{58C384F2-CEC6-425F-8B0E-DF92C2E3A2FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58C384F2-CEC6-425F-8B0E-DF92C2E3A2FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58C384F2-CEC6-425F-8B0E-DF92C2E3A2FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18266D94-B9A3-4B13-B8F6-A0A6D02C5BDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18266D94-B9A3-4B13-B8F6-A0A6D02C5BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18266D94-B9A3-4B13-B8F6-A0A6D02C5BDE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{18266D94-B9A3-4B13-B8F6-A0A6D02C5BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18266D94-B9A3-4B13-B8F6-A0A6D02C5BDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18266D94-B9A3-4B13-B8F6-A0A6D02C5BDE}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

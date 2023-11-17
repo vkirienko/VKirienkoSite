@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "module": "es2022",
@@ -7,7 +7,7 @@
     "types": [ "google.maps" ]
   },
   "files": [
-    "main.ts"
+    "src/main.ts"
   ],
   "include": [
     "src/**/*.d.ts"
