@@ -7,4 +7,16 @@
     <!-- Folder where production build objects will be placed -->
     <PublishAssetsDirectory>$(MSBuildProjectDirectory)\dist\VKirienko.Web.Client\</PublishAssetsDirectory>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <BuildCommand>npm run build</BuildCommand>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <BuildCommand>npm run build -- --configuration production</BuildCommand>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="dist\**" />
+  </ItemGroup>
 </Project>
