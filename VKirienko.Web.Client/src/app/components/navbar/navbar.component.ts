@@ -118,9 +118,9 @@ export class NavbarComponent implements OnInit {
     }
     titlee = titlee.split('/').pop();
 
-    for (let item = 0; item < this.listTitles.length; item++) {
-      if (this.listTitles[item].path === '/' + titlee) {
-        return this.listTitles[item].title;
+    for (const title of this.listTitles) {
+      if (title.path === '/' + titlee) {
+        return title.title;
       }
     }
     return 'Dashboard';

@@ -6,6 +6,7 @@
     //"strict": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitOverride": true,
+    "esModuleInterop": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
@@ -14,7 +15,6 @@
     "noUnusedParameters": true,
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
     "experimentalDecorators": true,
     //"noImplicitAny": true,                 
     //"strictNullChecks": true,              
@@ -32,7 +32,11 @@
     "lib": [
       "es2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@app/*": [ "src/app/*" ],
+      "@env/*": [ "src/environments/*" ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

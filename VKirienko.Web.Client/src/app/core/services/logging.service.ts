@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApplicationInsights } from '@microsoft/applicationinsights-web';
+import { ApplicationInsights, ICustomProperties } from '@microsoft/applicationinsights-web';
 
 import { environment } from '../../../environments/environment';
 
@@ -26,19 +26,19 @@ export class LoggingService {
     });
   }
 
-  logEvent(name: string, properties?: { [key: string]: any }) {
-    this.appInsights.trackEvent({ name: name }, properties);
+  logEvent(name: string, customProperties?: ICustomProperties) {
+    this.appInsights.trackEvent({ name: name }, customProperties);
   }
 
-  logMetric(name: string, average: number, properties?: { [key: string]: any }) {
-    this.appInsights.trackMetric({ name: name, average: average }, properties);
+  logMetric(name: string, average: number, customProperties?: ICustomProperties) {
+    this.appInsights.trackMetric({ name: name, average: average }, customProperties);
   }
 
   logException(exception: Error, severityLevel?: number) {
     this.appInsights.trackException({ exception: exception, severityLevel: severityLevel });
   }
 
-  logTrace(message: string, properties?: { [key: string]: any }) {
-    this.appInsights.trackTrace({ message: message }, properties);
+  logTrace(message: string, customProperties?: ICustomProperties) {
+    this.appInsights.trackTrace({ message: message }, customProperties);
   }
 }

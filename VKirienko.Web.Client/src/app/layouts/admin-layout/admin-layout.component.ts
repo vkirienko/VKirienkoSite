@@ -23,8 +23,8 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     document.getElementsByTagName('body')[0].classList.add('perfect-scrollbar-on');
 
-    const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
-    const elemSidebar = <HTMLElement>document.querySelector('.sidebar .sidebar-wrapper');
+    const elemMainPanel = document.querySelector('.main-panel') as HTMLElement;
+    const elemSidebar = document.querySelector('.sidebar .sidebar-wrapper') as HTMLElement;
 
     this.location.subscribe((ev: PopStateEvent) => {
       this.lastPoppedUrl = ev.url;
@@ -75,7 +75,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
 
   runOnRouteChange(): void {
     if (window.matchMedia(`(min-width: 960px)`).matches) {
-      const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
+      const elemMainPanel = document.querySelector('.main-panel') as HTMLElement;
       const ps = new PerfectScrollbar(elemMainPanel);
       ps.update();
     }
