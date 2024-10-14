@@ -12,7 +12,7 @@
       "projectType": "application",
       "architect": {
         "build": {
-          "builder": "@angular/build:application",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": {
               "base": "dist/VKirienko.Web.Client",
@@ -88,7 +88,7 @@
           "defaultConfiguration": "development"
         },
         "serve": {
-          "builder": "@angular/build:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "buildTarget": "vkirienko-site:build"
           },
@@ -104,7 +104,7 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular/build:extract-i18n",
+          "builder": "@angular-devkit/build-angular:extract-i18n"
           "options": {
             "buildTarget": "vkirienko-site:build"
           }
