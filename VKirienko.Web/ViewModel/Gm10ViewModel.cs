@@ -1,8 +1,7 @@
 ﻿
-namespace VKirienko.Web.ViewModel
+namespace VKirienko.Web.ViewModel;
+
+public class Gm10ViewModel
 {
-    public class Gm10ViewModel
-    {
-        public double Radiation { get; set; }
-    }
+    public double Radiation { get; set; }
 }

@@ -2,33 +2,32 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
-namespace VKirienko.Web
+namespace VKirienko.Web;
+
+public static class Program
 {
-    public static class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
+        CreateWebHostBuilder(args).Build().Run();
+    }
 
-        public static IHostBuilder CreateWebHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+    public static IHostBuilder CreateWebHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.ConfigureAppConfiguration((hostingContext, config) =>
                 {
-                    webBuilder.ConfigureAppConfiguration((hostingContext, config) =>
-                    {
-                        var env = hostingContext.HostingEnvironment;
-                        config.AddJsonFile($"appsettings.secrets.{env.EnvironmentName}.json", true, true);
-                    });
+                    var env = hostingContext.HostingEnvironment;
+                    config.AddJsonFile($"appsettings.secrets.{env.EnvironmentName}.json", true, true);
+                });
 
-                    webBuilder.UseStartup<Startup>();
-                    webBuilder.CaptureStartupErrors(true);
+                webBuilder.UseStartup<Startup>();
+                webBuilder.CaptureStartupErrors(true);
 
 #if DEBUG
-                    webBuilder.UseSetting("detailedErrors", "true");
+                webBuilder.UseSetting("detailedErrors", "true");
 #endif
-                });
-    }
+            });
 }
 
 

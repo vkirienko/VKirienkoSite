@@ -3,13 +3,12 @@ using System.Threading.Tasks;
 using VKirienko.Web.Data.Model;
 using VKirienko.Web.ViewModel;
 
-namespace VKirienko.Web.Services
-{
-    public interface ITelemetryService
-    {
-        Task<int> AddTelemetryAsync(SensorTelemetry telemetry);
+namespace VKirienko.Web.Services;
 
-        SensorTelemetryViewModel GetLastTelemetry();
-        IEnumerable<SensorTelemetryViewModel> GetTelemetry(int days, int samples);
-    }
+public interface ITelemetryService
+{
+    Task<int> AddTelemetryAsync(SensorTelemetry telemetry);
+
+    SensorTelemetryViewModel GetLastTelemetry();
+    IEnumerable<SensorTelemetryViewModel> GetTelemetry(int days, int samples);
 }

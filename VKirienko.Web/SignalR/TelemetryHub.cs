@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 
-namespace VKirienko.Web.SignalR
+namespace VKirienko.Web.SignalR;
+
+public class TelemetryHub : Hub
 {
-    public class TelemetryHub : Hub
-    {
-    }
 }

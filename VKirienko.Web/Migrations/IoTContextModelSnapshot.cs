@@ -5,37 +5,36 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VKirienko.Web.Data;
 
-namespace VKirienko.Web.Migrations
+namespace VKirienko.Web.Migrations;
+
+[DbContext(typeof(IoTContext))]
+partial class IoTContextModelSnapshot : ModelSnapshot
 {
-    [DbContext(typeof(IoTContext))]
-    partial class IoTContextModelSnapshot : ModelSnapshot
+    protected override void BuildModel(ModelBuilder modelBuilder)
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024");
+        modelBuilder
+            .HasAnnotation("ProductVersion", "2.1.4-rtm-31024");
 
-            modelBuilder.Entity("VKirienko.Web.Data.SensorTelemetry", b =>
-                {
-                    b.Property<int>("SensorTelemetryId")
-                        .ValueGeneratedOnAdd();
+        modelBuilder.Entity("VKirienko.Web.Data.SensorTelemetry", b =>
+            {
+                b.Property<int>("SensorTelemetryId")
+                    .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Date");
+                b.Property<DateTime>("Date");
 
-                    b.Property<decimal>("Humidity");
+                b.Property<decimal>("Humidity");
 
-                    b.Property<decimal>("Pressure");
+                b.Property<decimal>("Pressure");
 
-                    b.Property<decimal>("Temperature");
+                b.Property<decimal>("Temperature");
 
-                    b.Property<decimal>("Tvoc");
+                b.Property<decimal>("Tvoc");
 
-                    b.HasKey("SensorTelemetryId");
+                b.HasKey("SensorTelemetryId");
 
-                    b.ToTable("SensorTelemetry");
-                });
+                b.ToTable("SensorTelemetry");
+            });
 #pragma warning restore 612, 618
-        }
     }
 }
