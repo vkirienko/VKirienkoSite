@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="install/deploy.ps1" />
+    <File Path="install/deploy2.ps1" />
+    <File Path="install/install.sh" />
+    <File Path="install/pi-deploy.cmd" />
+    <File Path="install/vkirienko-web.service" />
+  </Folder>
+  <Project Path="VKirienko.Web.Client/VKirienko.Web.Client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="VKirienko.Web/VKirienko.Web.csproj" />
+</Solution>
