@@ -51,6 +51,7 @@ public class TelemetryService(
                 (t.Date - startDate).TotalMinutes < (i + 1) * sampleSize);
 
             var sampleDate = today.AddMinutes(-(samples - i) * sampleSize).ToLocalTime();
+
             telemetry.Add(new SensorTelemetryViewModel
             {
                 Date = sampleDate,
@@ -58,7 +59,8 @@ public class TelemetryService(
                 Humidity = Average(window, d => d.Humidity),
                 Pressure = Average(window, d => d.Pressure),
                 Tvoc = Average(window, d => d.Tvoc),
-                Radiation = Average(window, d => d.Radiation)
+                RadiationGm10 = Average(window, d => d.RadiationGm10),
+                RadiationGmc500 = Average(window, d => d.RadiationGmc500)
             });
 
             /*
@@ -69,7 +71,8 @@ public class TelemetryService(
                 Humidity = Median(window, d => d.Humidity),
                 Pressure = Median(window, d => d.Pressure),
                 Tvoc = Median(window, d => d.Tvoc),
-                Radiation = Median(window, d => d.Radiation)
+                RadiationGm10 = Median(window, d => d.RadiationGm10),
+                RadiationGmc500 = Median(window, d => d.RadiationGmc500)
             });
             */
         }

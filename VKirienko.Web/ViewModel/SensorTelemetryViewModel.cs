@@ -9,5 +9,6 @@ public class SensorTelemetryViewModel
     public double? Humidity { get; set; }
     public double? Pressure { get; set; }
     public double? Tvoc { get; set; }
-    public double? Radiation { get; set; }
+    public double? RadiationGm10 { get; set; }
+    public double? RadiationGmc500 { get; set; }
 }

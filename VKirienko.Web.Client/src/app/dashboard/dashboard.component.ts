@@ -76,7 +76,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.createHumidityChart(telemetry);
         this.createPressureChart(telemetry);
         this.createTvocChart(telemetry);
-        this.createRadiationChart(telemetry);
+        this.createRadiationGm10Chart(telemetry);
+        this.createRadiationGmc500Chart(telemetry);
       });
 
     this.signalRService.startConnection();
@@ -171,9 +172,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.startAnimation(new LineChart('#tvocChart', this.getChartData(data), this.getChartOptions(data)));
   }
 
-  private createRadiationChart(telemetry: SensorTelemetry[]): void {
-    const data = telemetry.map(t => t.radiation);
+  private createRadiationGm10Chart(telemetry: SensorTelemetry[]): void {
+    const data = telemetry.map(t => t.radiationGm10);
 
-    this.startAnimation(new LineChart('#radiationChart', this.getChartData(data), this.getChartOptions(data)));
+    this.startAnimation(new LineChart('#radiationGm10Chart', this.getChartData(data), this.getChartOptions(data)));
+  }
+
+  private createRadiationGmc500Chart(telemetry: SensorTelemetry[]): void {
+    const data = telemetry.map(t => t.radiationGmc500);
+
+    this.startAnimation(new LineChart('#radiationGmc500Chart', this.getChartData(data), this.getChartOptions(data)));
   }
 }

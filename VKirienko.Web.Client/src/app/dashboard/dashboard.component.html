@@ -35,54 +35,70 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <div class="card card-chart">
-                    <div class="card-header card-header-info">
-                        <div class="ct-chart" id="pressureChart"></div>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">Pressure</h4>
-                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.pressure | number:'1.0-0'}} hPa</span></p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">access_time</i> last updated {{lastTelemetry?.date | date : 'M/dd/yyyy h:mm a'}}
-                        </div>
-                    </div>
+          <div class="col-md-6">
+            <div class="card card-chart">
+              <div class="card-header card-header-info">
+                <div class="ct-chart" id="pressureChart"></div>
+              </div>
+              <div class="card-body">
+                <h4 class="card-title">Pressure</h4>
+                <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.pressure | number:'1.0-0'}} hPa</span></p>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons">access_time</i> last updated {{lastTelemetry?.date | date : 'M/dd/yyyy h:mm a'}}
                 </div>
+              </div>
             </div>
-            <div class="col-md-6">
-                <div class="card card-chart">
-                    <div class="card-header card-header-rose">
-                        <div class="ct-chart" id="tvocChart"></div>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">TVOC</h4>
-                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.tvoc | number:'1.0-0'}}</span></p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">access_time</i> last updated {{lastTelemetry?.date | date : 'M/dd/yyyy h:mm a'}}
-                        </div>
-                    </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card card-chart">
+              <div class="card-header card-header-rose">
+                <div class="ct-chart" id="tvocChart"></div>
+              </div>
+              <div class="card-body">
+                <h4 class="card-title">TVOC</h4>
+                <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.tvoc | number:'1.0-0'}}</span></p>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons">access_time</i> last updated {{lastTelemetry?.date | date : 'M/dd/yyyy h:mm a'}}
                 </div>
+              </div>
             </div>
-            <div class="col-md-6">
-                <div class="card card-chart">
-                    <div class="card-header card-header-danger">
-                        <div class="ct-chart" id="radiationChart"></div>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">Radiation</h4>
-                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.radiation | number:'1.0-0'}} cpm</span></p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">access_time</i> last updated {{lastTelemetry?.date | date : 'M/dd/yyyy h:mm a'}}
-                        </div>
-                    </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card card-chart">
+              <div class="card-header card-header-danger">
+                <div class="ct-chart" id="radiationGm10Chart"></div>
+              </div>
+              <div class="card-body">
+                <h4 class="card-title">Radiation (GM-10)</h4>
+                <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.radiationGm10 | number:'1.0-0'}} cpm</span></p>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons">access_time</i> last updated {{lastTelemetry?.date | date : 'M/dd/yyyy h:mm a'}}
                 </div>
+              </div>
             </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card card-chart">
+              <div class="card-header card-header-danger">
+                <div class="ct-chart" id="radiationGmc500Chart"></div>
+              </div>
+              <div class="card-body">
+                <h4 class="card-title">Radiation (GMC-500+)</h4>
+                <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.radiationGmc500 | number:'1.0-0'}} cpm</span></p>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons">access_time</i> last updated {{lastTelemetry?.date | date : 'M/dd/yyyy h:mm a'}}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
 </div>

@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Caching.Hybrid;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VKirienko.Web.Core;
 using VKirienko.Web.Data.Model;
 using VKirienko.Web.Services;
 using VKirienko.Web.SignalR;
@@ -15,10 +17,9 @@ namespace VKirienko.Web.Controllers;
 [ApiController]
 public class TelemetryController : ControllerBase
 {
-    private static Gm10ViewModel _gm10ViewModel;
-
     private readonly ITelemetryService _telemetryService;
     private readonly IMapper _mapper;
+    private readonly HybridCache _cache;
     private readonly IHubContext<TelemetryHub> _hub;
 
 #if DEBUG
@@ -28,6 +29,7 @@ public class TelemetryController : ControllerBase
     public TelemetryController(
         ITelemetryService telemetryService,
         IMapper mapper,
+        HybridCache cache,
         IHubContext<TelemetryHub> hub
 #if DEBUG
         ,TimerManager timer
@@ -36,6 +38,7 @@ public class TelemetryController : ControllerBase
     {
         _telemetryService = telemetryService;
         _mapper = mapper;
+        _cache = cache;
         _hub = hub;
 #if DEBUG
         _timer = timer;
@@ -73,7 +76,7 @@ public class TelemetryController : ControllerBase
             });
         });
 
-        MergeWithGm10ViewModel();
+        await MergeWithGm10ViewModel();
 
         await _telemetryService.AddTelemetryAsync(telemetry);
 
@@ -82,19 +85,27 @@ public class TelemetryController : ControllerBase
 
         return Ok();
 
-        void MergeWithGm10ViewModel()
+        async Task MergeWithGm10ViewModel()
         {
-            telemetry.Radiation = _gm10ViewModel?.Radiation ?? 0;
+            var gm10Model = await _cache.GetOrCreateAsync<Gm10ReadingViewModel>(Constants.Gm10CacheKey, async (entry) => null);
+            var gmc500Model = await _cache.GetOrCreateAsync<Gmc500ReadingViewModel>(Constants.Gmc500CacheKey, async (entry) => null);
 
-            _gm10ViewModel = null;
+            telemetry.RadiationGm10 = gm10Model?.CPM ?? 0;
+            telemetry.RadiationGmc500 = gmc500Model?.CPM ?? 0;
+
+            gm10Model = null;
+            gmc500Model = null;
+
+            await _cache.SetAsync(Constants.Gm10CacheKey, gm10Model);
+            await _cache.SetAsync(Constants.Gmc500CacheKey, gmc500Model);
         }
     }
 
     // POST: api/Telemetry/gm10
     [HttpPost("gm10")]
-    public IActionResult PostGm10Telemetry([FromBody] Gm10ViewModel model)
+    public async Task<IActionResult> PostGm10Telemetry([FromBody] Gm10ReadingViewModel model)
     {
-        _gm10ViewModel = model;
+        await _cache.SetAsync(Constants.Gm10CacheKey, model);
         return Ok();
     }
 

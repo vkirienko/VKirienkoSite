@@ -5,7 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Quartz;
 using VKirienko.Web.Data;
+using VKirienko.Web.Jobs;
 using VKirienko.Web.Services;
 using VKirienko.Web.Settings;
 using VKirienko.Web.SignalR;
@@ -28,12 +30,36 @@ public class Startup(IConfiguration configuration)
         services.AddControllersWithViews();
         services.AddRazorPages();
         services.AddSignalR();
+        services.AddHybridCache();
+
+        services.AddHttpClient("GmcMapClient", httpClient =>
+        {
+            httpClient.BaseAddress = settings.GmcMap.Url;
+        });
+
+        services.AddQuartz(q =>
+        {
+            var jobKey = new JobKey("GmcTrackerJob");
+            q.AddJob<GmcTrackerJob>(opts => opts.WithIdentity(jobKey));
+
+            q.AddTrigger(opts => opts
+                .ForJob(jobKey)
+                .WithIdentity("GmcTrackerJob-trigger")
+                //run every 1 minutes
+                .WithCronSchedule("0 0/1 * * * ?")
+                .StartNow()
+            );
+        });
+        
+        services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
 
         services.AddAutoMapper(cfg => { }, typeof(Startup));
 
 #if DEBUG
         services.AddSingleton<TimerManager>();
 #endif
+
+        services.AddScoped<IGmcDataProvicer, GmcDataProvicer>();
         services.AddScoped<ITelemetryService, TelemetryService>();
 
         services.AddDbContext<IoTContext>(options =>

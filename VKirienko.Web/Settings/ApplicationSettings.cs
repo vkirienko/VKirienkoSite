@@ -6,7 +6,9 @@ public class ApplicationSettings
     public AdsbFi AdsbFi { get; set; }
     public AirplanesLive AirplanesLive { get; set; }
     public FlightAware FlightAware { get; set; }
-		public FlightRadar24 FlightRadar24 { get; set; }
+	public FlightRadar24 FlightRadar24 { get; set; }
     public OpenSky OpenSky { get; set; }
     public RadarBox RadarBox { get; set; }
+
+    public GmcMap GmcMap { get; set; }
 }

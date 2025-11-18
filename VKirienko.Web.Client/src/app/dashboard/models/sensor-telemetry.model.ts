@@ -4,5 +4,6 @@ export class SensorTelemetry {
   humidity: number;
   pressure: number;
   tvoc: number;
-  radiation: number;
+  radiationGm10: number;
+  radiationGmc500: number;
 }

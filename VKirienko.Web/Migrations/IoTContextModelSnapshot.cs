@@ -22,17 +22,13 @@ partial class IoTContextModelSnapshot : ModelSnapshot
                     .ValueGeneratedOnAdd();
 
                 b.Property<DateTime>("Date");
-
                 b.Property<decimal>("Humidity");
-
                 b.Property<decimal>("Pressure");
-
                 b.Property<decimal>("Temperature");
-
                 b.Property<decimal>("Tvoc");
-
+                b.Property<decimal>("RadiationGm10");
+                b.Property<decimal>("RadiationGmc500");
                 b.HasKey("SensorTelemetryId");
-
                 b.ToTable("SensorTelemetry");
             });
 #pragma warning restore 612, 618

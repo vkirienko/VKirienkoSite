@@ -7,6 +7,8 @@ public partial class InitialCreate : Migration
 {
     protected override void Up(MigrationBuilder migrationBuilder)
     {
+        ArgumentNullException.ThrowIfNull(migrationBuilder);
+
         migrationBuilder.CreateTable(
             name: "SensorTelemetry",
             columns: table => new
@@ -27,6 +29,8 @@ public partial class InitialCreate : Migration
 
     protected override void Down(MigrationBuilder migrationBuilder)
     {
+        ArgumentNullException.ThrowIfNull(migrationBuilder);
+
         migrationBuilder.DropTable(
             name: "SensorTelemetry");
     }
