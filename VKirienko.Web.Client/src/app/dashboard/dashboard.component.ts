@@ -13,7 +13,6 @@ import { TelemetryService } from './services/telemetry.service';
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
-    standalone: true,
     imports: [DecimalPipe, DatePipe]
 })
 export class DashboardComponent implements OnInit, OnDestroy {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgFor } from '@angular/common';
+
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 export declare interface RouteInfo {
@@ -23,8 +23,7 @@ export const ROUTES: RouteInfo[] = [
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
-    standalone: true,
-    imports: [RouterLink, NgFor, RouterLinkActive]
+    imports: [RouterLink, RouterLinkActive]
 })
 export class SidebarComponent implements OnInit {
   menuItems: RouteInfo[];

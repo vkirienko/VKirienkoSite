@@ -6,7 +6,6 @@ import { LoggingService } from './core/services/logging.service';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    standalone: true,
     imports: [RouterOutlet]
 })
 export class AppComponent {

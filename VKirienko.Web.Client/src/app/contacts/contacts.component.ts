@@ -4,7 +4,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @Component({
     selector: 'app-contacts',
     templateUrl: './contacts.component.html',
-    standalone: true,
     imports: [FontAwesomeModule]
 })
 export class ContactsComponent implements OnInit {

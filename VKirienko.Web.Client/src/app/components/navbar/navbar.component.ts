@@ -6,8 +6,7 @@ import { ROUTES, RouteInfo } from '../sidebar/sidebar.component';
 
 @Component({
     selector: 'app-navbar',
-    templateUrl: './navbar.component.html',
-    standalone: true
+    templateUrl: './navbar.component.html'
 })
 export class NavbarComponent implements OnInit {
   private listTitles: RouteInfo[];

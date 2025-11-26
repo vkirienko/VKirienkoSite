@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NgFor } from '@angular/common';
+
 
 import { SecurityReportUrl } from './security-report-url';
 
 @Component({
     selector: 'app-security',
-    templateUrl: './security.component.html',
-    standalone: true,
-    imports: [NgFor]
+    templateUrl: './security.component.html'
 })
 export class SecurityComponent implements OnInit {
   reports: SecurityReportUrl[];

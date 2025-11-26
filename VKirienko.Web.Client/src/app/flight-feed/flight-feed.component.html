@@ -5,48 +5,50 @@
         <i class="material-icons">send</i>
       </div>
     </div>
-    <div class="card-body" *ngIf="settings">
+    @if (settings) {
+      <div class="card-body">
         <div class="pt-3">
-            <a href="{{settings.adsbExchange.url}}{{settings.adsbExchange.userName}}" target="_new" rel="noreferrer">
-                <img width="48" height="48" src="https://www.adsbexchange.com/wp-content/uploads/cropped-Stealth-48px.png" alt="ADS-B Exchange">
-            </a>
-            <span>
-                <a href="{{settings.adsbExchange.url}}{{settings.adsbExchange.userName}}" class="site-title" target="_new" rel="noreferrer">ADS-B Exchange</a>
-                <br />
-                <span class="site-description">World's largest source of unfiltered flight data</span>
-            </span>
+          <a href="{{settings.adsbExchange.url}}{{settings.adsbExchange.userName}}" target="_new" rel="noreferrer">
+            <img width="48" height="48" src="https://www.adsbexchange.com/wp-content/uploads/cropped-Stealth-48px.png" alt="ADS-B Exchange">
+          </a>
+          <span>
+            <a href="{{settings.adsbExchange.url}}{{settings.adsbExchange.userName}}" class="site-title" target="_new" rel="noreferrer">ADS-B Exchange</a>
+            <br />
+            <span class="site-description">World's largest source of unfiltered flight data</span>
+          </span>
         </div>
         <div class="pt-5">
-            <a href="{{settings.adsbFi.url}}" target="_new" rel="noreferrer" class="adsb-fi">
-                adsb.fi
-            </a>
+          <a href="{{settings.adsbFi.url}}" target="_new" rel="noreferrer" class="adsb-fi">
+            adsb.fi
+          </a>
         </div>
         <div class="pt-5">
-            <a href="{{settings.airplanesLive.url}}" target="_new" rel="noreferrer">
-                <img src="https://airplanes.live/img/airplanes-live-logo.png" height="72" width="257" border="0" />
-            </a>
+          <a href="{{settings.airplanesLive.url}}" target="_new" rel="noreferrer">
+            <img src="https://airplanes.live/img/airplanes-live-logo.png" height="72" width="257" border="0" />
+          </a>
         </div>
         <div class="pt-4">
-            <a href="{{settings.flightAware.url}}{{settings.flightAware.userName}}" target="_new" rel="noreferrer">
-                <img src="https://flightaware.com/images/logo60.png" height="60" width="160" alt="FlightAware Flight Tracker" border="0" />
-            </a>
+          <a href="{{settings.flightAware.url}}{{settings.flightAware.userName}}" target="_new" rel="noreferrer">
+            <img src="https://flightaware.com/images/logo60.png" height="60" width="160" alt="FlightAware Flight Tracker" border="0" />
+          </a>
         </div>
         <div class="pt-5">
-            <a href="{{settings.flightRadar24.url}}{{settings.flightRadar24.userName}}" target="_new" rel="noreferrer">
-                <img src="//upload.wikimedia.org/wikipedia/en/thumb/8/84/Flightradar24_Logo.svg/250px-Flightradar24_Logo.svg.png" decoding="async" width="250" height="61" srcset="//upload.wikimedia.org/wikipedia/en/thumb/8/84/Flightradar24_Logo.svg/375px-Flightradar24_Logo.svg.png 1.5x, //upload.wikimedia.org/wikipedia/en/thumb/8/84/Flightradar24_Logo.svg/500px-Flightradar24_Logo.svg.png 2x" data-file-width="205" data-file-height="50" alt="FlightRadar 24 Tracker">
-            </a>
+          <a href="{{settings.flightRadar24.url}}{{settings.flightRadar24.userName}}" target="_new" rel="noreferrer">
+            <img src="//upload.wikimedia.org/wikipedia/en/thumb/8/84/Flightradar24_Logo.svg/250px-Flightradar24_Logo.svg.png" decoding="async" width="250" height="61" srcset="//upload.wikimedia.org/wikipedia/en/thumb/8/84/Flightradar24_Logo.svg/375px-Flightradar24_Logo.svg.png 1.5x, //upload.wikimedia.org/wikipedia/en/thumb/8/84/Flightradar24_Logo.svg/500px-Flightradar24_Logo.svg.png 2x" data-file-width="205" data-file-height="50" alt="FlightRadar 24 Tracker">
+          </a>
         </div>
         <div class="pt-5">
-            <a href="{{settings.openSky.url}}{{settings.openSky.userName}}" target="_new" rel="noreferrer">
-                <img alt="OpenSky Network" src="https://opensky-network.org/static/osky-logo-banner.png" style="border-style: none; width: 289px; height: 96px">
-            </a>
+          <a href="{{settings.openSky.url}}{{settings.openSky.userName}}" target="_new" rel="noreferrer">
+            <img alt="OpenSky Network" src="https://opensky-network.org/static/osky-logo-banner.png" style="border-style: none; width: 289px; height: 96px">
+          </a>
         </div>
         <div class="pt-5">
-            <div style="background: #3b4442; height: 62px; width: 300px">
-                <a href="{{settings.radarBox.url}}{{settings.radarBox.userName}}" target="_new" rel="noreferrer">
-                    <img alt="AirNav RadarBox" src="https://cdn.radarbox24.com/img/assets/logo/airnav_rb_radar.svg" style="border-style: none; width: 256px; margin-left: 10px">
-                </a>
-            </div>
+          <div style="background: #3b4442; height: 62px; width: 300px">
+            <a href="{{settings.radarBox.url}}{{settings.radarBox.userName}}" target="_new" rel="noreferrer">
+              <img alt="AirNav RadarBox" src="https://cdn.radarbox24.com/img/assets/logo/airnav_rb_radar.svg" style="border-style: none; width: 256px; margin-left: 10px">
+            </a>
+          </div>
         </div>
-    </div>
-</div>
+      </div>
+    }
+  </div>

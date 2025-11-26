@@ -7,7 +7,6 @@ import { environment } from '../../environments/environment';
 @Component({
     selector: 'app-flight-radar',
     templateUrl: './flight-radar.component.html',
-    standalone: true,
     imports: [MatButtonModule]
 })
 export class FlightRadarComponent implements OnInit {
