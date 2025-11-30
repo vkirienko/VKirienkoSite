@@ -3,7 +3,7 @@
 & cmd /c rmdir bin /s /q
 & cmd /c rmdir obj /s /q
 
-& dotnet publish -c Release -r linux-arm64 --sc
+& dotnet publish -c Release -r linux-arm64 --self-contained
 
 
 $googleMapsApiKey = (Get-Content -path ..\..\Raspberry\google\GoogleMapsApiKey.txt -Raw)
