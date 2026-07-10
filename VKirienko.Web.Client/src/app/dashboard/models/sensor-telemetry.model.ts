@@ -1,9 +1,9 @@
 export class SensorTelemetry {
-  date: Date;
-  temperature: number;
-  humidity: number;
-  pressure: number;
-  tvoc: number;
-  radiationGm10: number;
-  radiationGmc500: number;
+  date: Date = new Date();
+  temperature: number = 0;
+  humidity: number = 0;
+  pressure: number = 0;
+  tvoc: number = 0;
+  radiationGm10: number = 0;
+  radiationGmc500: number = 0;
 }

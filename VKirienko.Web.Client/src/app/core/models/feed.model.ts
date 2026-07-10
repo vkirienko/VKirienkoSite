@@ -1,4 +1,4 @@
 export class Feed {
-  url: string;
-  userName: string;
+  url: string = '';
+  userName: string = '';
 }

@@ -1,6 +1,6 @@
-﻿import { SafeResourceUrl } from '@angular/platform-browser';
+import { SafeResourceUrl } from '@angular/platform-browser';
 
 export class SecurityReportUrl {
-  name: string;
-  url: SafeResourceUrl;
+  name?: string;
+  url?: SafeResourceUrl;
 }

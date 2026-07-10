@@ -8,11 +8,11 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Temperature</h4>
-                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.temperature | number:'1.1-1'}} &#8451;</span></p>
+                        <p class="card-category">Last observed value <span class="text-success">{{$safeNavigationMigration(lastTelemetry?.temperature) | number:'1.1-1'}} &#8451;</span></p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">access_time</i> last updated {{lastTelemetry?.date | date : 'M/dd/yyyy h:mm a'}}
+                            <i class="material-icons">access_time</i> last updated {{$safeNavigationMigration(lastTelemetry?.date) | date : 'M/dd/yyyy h:mm a'}}
                         </div>
                     </div>
                 </div>
@@ -24,11 +24,11 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Humidity</h4>
-                        <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.humidity | number:'1.0-0'}} %</span></p>
+                        <p class="card-category">Last observed value <span class="text-success">{{$safeNavigationMigration(lastTelemetry?.humidity) | number:'1.0-0'}} %</span></p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">access_time</i> last updated {{lastTelemetry?.date | date : 'M/dd/yyyy h:mm a'}}
+                            <i class="material-icons">access_time</i> last updated {{$safeNavigationMigration(lastTelemetry?.date) | date : 'M/dd/yyyy h:mm a'}}
                         </div>
                     </div>
                 </div>
@@ -42,11 +42,11 @@
               </div>
               <div class="card-body">
                 <h4 class="card-title">Pressure</h4>
-                <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.pressure | number:'1.0-0'}} hPa</span></p>
+                <p class="card-category">Last observed value <span class="text-success">{{$safeNavigationMigration(lastTelemetry?.pressure) | number:'1.0-0'}} hPa</span></p>
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="material-icons">access_time</i> last updated {{lastTelemetry?.date | date : 'M/dd/yyyy h:mm a'}}
+                  <i class="material-icons">access_time</i> last updated {{$safeNavigationMigration(lastTelemetry?.date) | date : 'M/dd/yyyy h:mm a'}}
                 </div>
               </div>
             </div>
@@ -58,11 +58,11 @@
               </div>
               <div class="card-body">
                 <h4 class="card-title">TVOC</h4>
-                <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.tvoc | number:'1.0-0'}}</span></p>
+                <p class="card-category">Last observed value <span class="text-success">{{$safeNavigationMigration(lastTelemetry?.tvoc) | number:'1.0-0'}}</span></p>
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="material-icons">access_time</i> last updated {{lastTelemetry?.date | date : 'M/dd/yyyy h:mm a'}}
+                  <i class="material-icons">access_time</i> last updated {{$safeNavigationMigration(lastTelemetry?.date) | date : 'M/dd/yyyy h:mm a'}}
                 </div>
               </div>
             </div>
@@ -74,11 +74,11 @@
               </div>
               <div class="card-body">
                 <h4 class="card-title">Radiation (GM-10)</h4>
-                <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.radiationGm10 | number:'1.0-0'}} cpm</span></p>
+                <p class="card-category">Last observed value <span class="text-success">{{$safeNavigationMigration(lastTelemetry?.radiationGm10) | number:'1.0-0'}} cpm</span></p>
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="material-icons">access_time</i> last updated {{lastTelemetry?.date | date : 'M/dd/yyyy h:mm a'}}
+                  <i class="material-icons">access_time</i> last updated {{$safeNavigationMigration(lastTelemetry?.date) | date : 'M/dd/yyyy h:mm a'}}
                 </div>
               </div>
             </div>
@@ -90,11 +90,11 @@
               </div>
               <div class="card-body">
                 <h4 class="card-title">Radiation (GMC-500+)</h4>
-                <p class="card-category">Last observed value <span class="text-success">{{lastTelemetry?.radiationGmc500 | number:'1.0-0'}} cpm</span></p>
+                <p class="card-category">Last observed value <span class="text-success">{{$safeNavigationMigration(lastTelemetry?.radiationGmc500) | number:'1.0-0'}} cpm</span></p>
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="material-icons">access_time</i> last updated {{lastTelemetry?.date | date : 'M/dd/yyyy h:mm a'}}
+                  <i class="material-icons">access_time</i> last updated {{$safeNavigationMigration(lastTelemetry?.date) | date : 'M/dd/yyyy h:mm a'}}
                 </div>
               </div>
             </div>

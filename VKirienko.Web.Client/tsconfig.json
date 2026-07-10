@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "src",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "noImplicitOverride": true,
@@ -26,10 +25,10 @@
     "module": "es2022",
     "paths": {
       "@app/*": [
-        "src/app/*"
+        "./src/app/*"
       ],
       "@env/*": [
-        "src/environments/*"
+        "./src/environments/*"
       ]
     }
   },

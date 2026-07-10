@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
     selector: 'app-contacts',
     templateUrl: './contacts.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [FontAwesomeModule]
 })
 export class ContactsComponent implements OnInit {
@@ -102,17 +103,22 @@ export class ContactsComponent implements OnInit {
         "stylers": [{
           "visibility": "simplified"
         }]
-        }]
+      }]
     } as google.maps.MapOptions;
-
-    const map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
     const marker = new google.maps.Marker({
       position: myLatlng,
       title: "Hello World!"
     });
 
-    // To add the marker to the map, call setMap();
-    marker.setMap(map);
+    const mapElem = document.getElementById("map")
+
+    if (mapElem != null)
+    {
+      const map = new google.maps.Map(mapElem, mapOptions);
+
+      // To add the marker to the map, call setMap();
+      marker.setMap(map);
+    }
   }
 }

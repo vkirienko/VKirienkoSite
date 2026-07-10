@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 
@@ -6,15 +6,13 @@ import { SecurityReportUrl } from './security-report-url';
 
 @Component({
     selector: 'app-security',
+    changeDetection: ChangeDetectionStrategy.Eager,
     templateUrl: './security.component.html'
 })
-export class SecurityComponent implements OnInit {
+export class SecurityComponent {
   reports: SecurityReportUrl[];
 
   constructor(private sanitizer: DomSanitizer) {
-  }
-
-  ngOnInit(): void {
     this.reports = [
       {
           name: 'DNSSEC Report',

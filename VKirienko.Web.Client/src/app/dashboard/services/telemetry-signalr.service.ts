@@ -9,8 +9,8 @@ import { SensorTelemetry } from '../models/sensor-telemetry.model';
 })
 export class TelemetrySignalrService {
 
-  private hubConnection: signalR.HubConnection;
-  private lastTelemetry$: Subject<SensorTelemetry>;
+  private hubConnection?: signalR.HubConnection;
+  private lastTelemetry$: Subject<SensorTelemetry> = new Subject<SensorTelemetry>();
 
   startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
@@ -29,27 +29,29 @@ export class TelemetrySignalrService {
   }
 
   stopConnection = () => {
-    this.hubConnection.stop();
+    if (this.hubConnection != null) {
+      this.hubConnection.stop();
+    }
   }
     
   addLastTelemetryListener = (): Observable<SensorTelemetry> => {
 
-    this.lastTelemetry$ = new Subject<SensorTelemetry>();
+    if (this.hubConnection != null) {
+      this.hubConnection.on('LastTelemetry', (data: SensorTelemetry) => {
+        this.lastTelemetry$.next(data);
+      });
 
-    this.hubConnection.on('LastTelemetry', (data: SensorTelemetry) => {
-      this.lastTelemetry$.next(data);
-    });
-
-    this.hubConnection.onclose((err?: Error) => {
-      console.log('Connection closed')
-      if (err) {
-        // An error occurs
-        this.lastTelemetry$.error(err);
-      } else {
-        // No more events to be sent.
-        this.lastTelemetry$.complete();
-      }
-    });
+      this.hubConnection.onclose((err?: Error) => {
+        console.log('Connection closed')
+        if (err) {
+          // An error occurs
+          this.lastTelemetry$.error(err);
+        } else {
+          // No more events to be sent.
+          this.lastTelemetry$.complete();
+        }
+      });
+    }
 
     return this.lastTelemetry$;
   }

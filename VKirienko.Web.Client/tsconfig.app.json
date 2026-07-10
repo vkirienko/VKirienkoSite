@@ -3,13 +3,20 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "module": "es2022",
-    "baseUrl": "",
     "types": [ "google.maps" ]
   },
   "files": [
-    "src/main.ts"
+    "./src/main.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
-  ]
+    "./src/**/*.d.ts"
+  ],
+  "angularCompilerOptions": {
+    "extendedDiagnostics": {
+      "checks": {
+        "nullishCoalescingNotNullable": "suppress",
+        "optionalChainNotNullable": "suppress"
+      }
+    }
+  }
 }

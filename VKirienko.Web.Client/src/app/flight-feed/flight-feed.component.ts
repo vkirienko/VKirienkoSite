@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 
 import { SettingsService } from '../core/services/settings.service';
@@ -8,11 +8,12 @@ import { Settings } from '../core/models/settings.model';
 @Component({
     selector: 'app-flight-feed',
     templateUrl: './flight-feed.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./flight-feed.component.css']
 })
 export class FlightFeedComponent implements OnInit {
 
-  settings: Settings;
+  settings?: Settings;
 
   constructor(
     private settingsService: SettingsService) {

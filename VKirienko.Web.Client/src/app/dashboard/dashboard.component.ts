@@ -1,5 +1,5 @@
 import { DatePipe, DecimalPipe } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Interpolation, LineChart, LineChartData, LineChartOptions } from 'chartist';
 import { Subscription } from 'rxjs';
@@ -13,6 +13,7 @@ import { TelemetryService } from './services/telemetry.service';
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [DecimalPipe, DatePipe]
 })
 export class DashboardComponent implements OnInit, OnDestroy {
@@ -21,12 +22,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   labels: string[] = [];
 
-  lastTelemetry: SensorTelemetry;
+  lastTelemetry: SensorTelemetry = new SensorTelemetry();
   lastTelemetry$: Subscription;
 
   constructor(
     private telemetryService: TelemetryService,
     private signalRService: TelemetrySignalrService) {
+
+    this.signalRService.startConnection();
+
+    this.lastTelemetry$ = this.signalRService
+      .addLastTelemetryListener()
+      .pipe(untilDestroyed(this))
+      .subscribe(telemetry => {
+        console.log(telemetry);
+        this.lastTelemetry = telemetry;
+      });
+
     this.labels = this.populateLabels();
   }
 
@@ -78,16 +90,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.createRadiationGm10Chart(telemetry);
         this.createRadiationGmc500Chart(telemetry);
       });
-
-    this.signalRService.startConnection();
-
-    this.lastTelemetry$ = this.signalRService
-      .addLastTelemetryListener()
-      .pipe(untilDestroyed(this))
-      .subscribe(telemetry => {
-        console.log(telemetry);
-        this.lastTelemetry = telemetry;
-      });
   }
 
   ngOnDestroy(): void {
@@ -120,7 +122,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       series: [] 
     };
 
-    chartData.series.push(data);
+    chartData.series.push(data as never);
 
     return chartData as LineChartData;
   }
@@ -166,7 +168,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   private createTvocChart(telemetry: SensorTelemetry[]): void {
-    const data = telemetry.map(t => t.tvoc == null ? null : t.tvoc / 100000);
+    const data = telemetry.map(t => t.tvoc == null ? 0 : t.tvoc / 100000);
 
     this.startAnimation(new LineChart('#tvocChart', this.getChartData(data), this.getChartOptions(data)));
   }
