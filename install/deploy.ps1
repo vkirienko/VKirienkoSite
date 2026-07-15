@@ -31,3 +31,16 @@ Get-ChildItem '.\bin\Release\net10.0\linux-arm64\publish\wwwroot\*.js' -Recurse 
 
 	[System.IO.File]::WriteAllText($_, $content)
 }
+
+$automapperKey = (Get-Content -path ..\..\Raspberry\app-secrets\automapper.txt -Raw)
+
+Write-Host ""
+Write-Host $automapperKey
+
+Get-ChildItem '.\bin\Release\net10.0\linux-arm64\publish\appsettings.json' -Recurse | ForEach {
+	Write-Host $_
+
+	$content = [System.IO.File]::ReadAllText($_).Replace("YOUR_AUTOMAPPER_KEY", $automapperKey)
+
+	[System.IO.File]::WriteAllText($_, $content)
+}

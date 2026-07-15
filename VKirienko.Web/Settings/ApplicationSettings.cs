@@ -11,4 +11,6 @@ public class ApplicationSettings
     public RadarBox RadarBox { get; set; }
 
     public GmcMap GmcMap { get; set; }
+
+    public Licenses Licenses { get; set; }
 }

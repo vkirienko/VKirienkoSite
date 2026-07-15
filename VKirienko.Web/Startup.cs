@@ -53,7 +53,7 @@ public class Startup(IConfiguration configuration)
         
         services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
 
-        services.AddAutoMapper(cfg => { }, typeof(Startup));
+        services.AddAutoMapper(cfg => { cfg.LicenseKey = settings.Licenses.AutoMapper; }, typeof(Startup));
 
 #if DEBUG
         services.AddSingleton<TimerManager>();
