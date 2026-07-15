@@ -55,7 +55,7 @@
     "@angular/cli": "^22.0.6",
     "@angular/compiler-cli": "22.0.6",
     "@angular/language-service": "22.0.6",
-    "@eslint/config-inspector": "^3.0.4",
+    "@eslint/config-inspector": "^3.1.0",
     "@eslint/js": "^10.0.1",
     "@types/bootstrap": "5.2.11",
     "@types/google.maps": "3.65.2",
@@ -68,7 +68,7 @@
     "run-script-os": "^1.1.6",
     "ts-node": "10.9.2",
     "typescript": "6.0.3",
-    "typescript-eslint": "^8.63.0"
+    "typescript-eslint": "^8.64.0"
   },
   "overrides": {
     "autoprefixer": "10.4.5"
