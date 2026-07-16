@@ -8,14 +8,9 @@
     @if (settings) {
       <div class="card-body">
         <div class="pt-3">
-          <a href="{{settings.adsbExchange.url}}{{settings.adsbExchange.userName}}" target="_new" rel="noreferrer">
-            <img width="316" height="43" src="https://www.adsbexchange.com/wp-content/uploads/logo.svg" alt="ADS-B Exchange">
+          <a href="{{settings.adsbExchange.url}}{{settings.adsbExchange.userName}}" style="background-color:black;height:316px;font-size:45px" target="_new" rel="noreferrer">
+            <img src="https://www.adsbexchange.com/wp-content/uploads/logo.svg" alt="ADS-B Exchange">
           </a>
-          <span>
-            <a href="{{settings.adsbExchange.url}}{{settings.adsbExchange.userName}}" class="site-title" target="_new" rel="noreferrer">ADS-B Exchange</a>
-            <br />
-            <span class="site-description">World's largest source of unfiltered flight data</span>
-          </span>
         </div>
         <div class="pt-5">
           <a href="{{settings.adsbFi.url}}" target="_new" rel="noreferrer" class="adsb-fi">
