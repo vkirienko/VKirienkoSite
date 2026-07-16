@@ -3,12 +3,21 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
+      "launchUrl": "https://localhost:4200",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "https://localhost:7169;http://localhost:5287"
     }
+  },
+  "VKirienko.Web": {
+    "commandName": "Project",
+    "launchBrowser": true,
+    "launchUrl": "https://localhost:4200",
+    "environmentVariables": {
+      "ASPNETCORE_ENVIRONMENT": "Development"
+    },
+    "applicationUrl": "https://localhost:7169;http://localhost:5287"
   },
   "iisSettings": {
     "windowsAuthentication": false,

@@ -4,9 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
-    <SpaRoot>..\VKirienko.Web.Client</SpaRoot>
-    <SpaProxyServerUrl>https://localhost:4200</SpaProxyServerUrl>
-    <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+    <!-- Removed SpaProxy integration: start the client project separately from Visual Studio -->
     <UserSecretsId>a3cba738-2a05-4255-b7d8-93e04fd2ee77</UserSecretsId>
 	<AnalysisMode>All</AnalysisMode>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
@@ -22,7 +20,7 @@
     <PackageReference Include="AutoMapper" Version="16.2.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="3.1.2" />
     <PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
-    <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="10.0.10" />
+    <!-- SpaProxy removed. Start the client project from Visual Studio as a second startup project if desired. -->
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -33,9 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VKirienko.Web.Client\VKirienko.Web.Client.esproj">
-		<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-	</ProjectReference>
+    <ProjectReference Include="..\VKirienko.Web.Client\VKirienko.Web.Client.esproj" />
   </ItemGroup>
 
   <ItemGroup>
