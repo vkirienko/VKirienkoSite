@@ -106,19 +106,17 @@ export class ContactsComponent implements OnInit {
       }]
     } as google.maps.MapOptions;
 
-    const marker = new google.maps.Marker({
-      position: myLatlng,
-      title: "Hello World!"
-    });
-
     const mapElem = document.getElementById("map")
 
     if (mapElem != null)
     {
       const map = new google.maps.Map(mapElem, mapOptions);
 
-      // To add the marker to the map, call setMap();
-      marker.setMap(map);
+      new google.maps.marker.AdvancedMarkerElement({
+        map: map,
+        position: myLatlng,
+        title: "My Location"
+      });
     }
   }
 }
