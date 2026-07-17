@@ -2,7 +2,6 @@ import { enableProdMode, ErrorHandler, importProvidersFrom, provideZoneChangeDet
 import { bootstrapApplication } from '@angular/platform-browser';
 import { PreloadAllModules, provideRouter, withPreloading } from '@angular/router';
 import { withInterceptorsFromDi, provideHttpClient, withXhr } from '@angular/common/http';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import 'hammerjs';
 
 import { environment } from './environments/environment';
@@ -26,7 +25,6 @@ bootstrapApplication(AppComponent, {
       provide: ErrorHandler,
       useClass: ErrorHandlerService
     },
-    provideAnimations(),
     provideHttpClient(withXhr(), 
       withInterceptorsFromDi()
     ),
