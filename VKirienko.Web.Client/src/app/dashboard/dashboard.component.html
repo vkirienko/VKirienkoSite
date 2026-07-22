@@ -8,11 +8,11 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Temperature</h4>
-                        <p class="card-category">Last observed value <span class="text-success">{{$safeNavigationMigration(lastTelemetry?.temperature) | number:'1.1-1'}} &#8451;</span></p>
+                        <p class="card-category">Last observed value <span class="text-success">{{$safeNavigationMigration(lastTelemetrySignal()?.temperature) | number:'1.1-1'}} &#8451;</span></p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">access_time</i> last updated {{$safeNavigationMigration(lastTelemetry?.date) | date : 'M/dd/yyyy h:mm a'}}
+                            <i class="material-icons">access_time</i> last updated {{$safeNavigationMigration(lastTelemetrySignal()?.date) | date : 'M/dd/yyyy h:mm a'}}
                         </div>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Humidity</h4>
-                        <p class="card-category">Last observed value <span class="text-success">{{$safeNavigationMigration(lastTelemetry?.humidity) | number:'1.0-0'}} %</span></p>
+                        <p class="card-category">Last observed value <span class="text-success">{{$safeNavigationMigration(lastTelemetrySignal()?.humidity) | number:'1.0-0'}} %</span></p>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -46,7 +46,7 @@
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="material-icons">access_time</i> last updated {{$safeNavigationMigration(lastTelemetry?.date) | date : 'M/dd/yyyy h:mm a'}}
+                  <i class="material-icons">access_time</i> last updated {{$safeNavigationMigration(lastTelemetrySignal()?.date) | date : 'M/dd/yyyy h:mm a'}}
                 </div>
               </div>
             </div>
@@ -62,7 +62,7 @@
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="material-icons">access_time</i> last updated {{$safeNavigationMigration(lastTelemetry?.date) | date : 'M/dd/yyyy h:mm a'}}
+                  <i class="material-icons">access_time</i> last updated {{$safeNavigationMigration(lastTelemetrySignal()?.date) | date : 'M/dd/yyyy h:mm a'}}
                 </div>
               </div>
             </div>
@@ -78,7 +78,7 @@
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="material-icons">access_time</i> last updated {{$safeNavigationMigration(lastTelemetry?.date) | date : 'M/dd/yyyy h:mm a'}}
+                  <i class="material-icons">access_time</i> last updated {{$safeNavigationMigration(lastTelemetrySignal()?.date) | date : 'M/dd/yyyy h:mm a'}}
                 </div>
               </div>
             </div>
@@ -94,7 +94,7 @@
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="material-icons">access_time</i> last updated {{$safeNavigationMigration(lastTelemetry?.date) | date : 'M/dd/yyyy h:mm a'}}
+                  <i class="material-icons">access_time</i> last updated {{$safeNavigationMigration(lastTelemetrySignal()?.date) | date : 'M/dd/yyyy h:mm a'}}
                 </div>
               </div>
             </div>

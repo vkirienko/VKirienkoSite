@@ -1,15 +1,12 @@
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Interpolation, LineChart, LineChartData, LineChartOptions } from 'chartist';
-import { Subscription } from 'rxjs';
 
 import { SensorTelemetry } from './models/sensor-telemetry.model';
 import { TelemetrySignalrService } from './services/telemetry-signalr.service';
 import { TelemetryService } from './services/telemetry.service';
 
 
-@UntilDestroy()
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
@@ -22,24 +19,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   labels: string[] = [];
 
-  lastTelemetry: SensorTelemetry = new SensorTelemetry();
-  lastTelemetry$: Subscription;
+  // expose telemetry via service signal; keep a typed property for template compatibility
+  lastTelemetry: SensorTelemetry | null = null;
 
   constructor(
     private telemetryService: TelemetryService,
     private signalRService: TelemetrySignalrService) {
 
-    this.signalRService.startConnection();
-
-    this.lastTelemetry$ = this.signalRService
-      .addLastTelemetryListener()
-      .pipe(untilDestroyed(this))
-      .subscribe(telemetry => {
-        console.log(telemetry);
-        this.lastTelemetry = telemetry;
-      });
+    this.signalRService.startConnection()
+      .then(() => this.signalRService.addLastTelemetryListener());
 
     this.labels = this.populateLabels();
+  }
+
+  get lastTelemetrySignal() {
+    return this.signalRService.lastTelemetrySignal;
   }
 
   startAnimation(chart: LineChart): void {
@@ -78,6 +72,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.telemetryService.getLastTelemetry()
       .subscribe(telemetry => {
+        // populate signal inside the SignalR service so template updates happen in a zone-less manner
+        this.signalRService.setLastTelemetry(telemetry);
         this.lastTelemetry = telemetry;
       });
 

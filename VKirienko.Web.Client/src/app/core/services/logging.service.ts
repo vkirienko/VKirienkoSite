@@ -11,7 +11,7 @@ export class LoggingService {
     this.appInsights = new ApplicationInsights({
       config: {
         connectionString: environment.appInsightsConnectionString,
-        enableAutoRouteTracking: true // option to log all route changes
+        enableAutoRouteTracking: false
       }
     });
 

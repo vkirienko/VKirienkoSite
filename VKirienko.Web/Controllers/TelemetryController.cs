@@ -24,6 +24,7 @@ public class TelemetryController : ControllerBase
 
 #if DEBUG
     private readonly TimerManager _timer;
+    private double salt;
 #endif
 
     public TelemetryController(
@@ -53,7 +54,16 @@ public class TelemetryController : ControllerBase
 
 #if DEBUG
         if (!_timer.IsTimerStarted)
-            _timer.PrepareTimer(() => SendLastTelemetry(telemetry));
+        {
+            _timer.PrepareTimer(() =>
+            {
+                salt += 0.1;
+                telemetry.Temperature += salt;
+                telemetry.Humidity += salt * 10;
+
+                SendLastTelemetry(telemetry);
+            });
+        }
 #endif      
 
         return telemetry;

@@ -1,5 +1,4 @@
-import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Injectable, signal, Signal } from '@angular/core';
 import * as signalR from '@microsoft/signalr'
 
 import { SensorTelemetry } from '../models/sensor-telemetry.model';
@@ -9,7 +8,18 @@ import { SensorTelemetry } from '../models/sensor-telemetry.model';
 })
 export class TelemetrySignalrService {
   private hubConnection?: signalR.HubConnection;
-  private lastTelemetry$: Subject<SensorTelemetry> = new Subject<SensorTelemetry>();
+
+  // Signal-backed state for zone-less updates
+  private _lastTelemetry = signal<SensorTelemetry | null>(new SensorTelemetry());
+
+  get lastTelemetrySignal(): Signal<SensorTelemetry | null> {
+    return this._lastTelemetry;
+  }
+
+  // allow external population (e.g. initial HTTP fetch)
+  setLastTelemetry(data: SensorTelemetry): void {
+    this._lastTelemetry.set(data);
+  }
 
   // Ensure hub connection exists and handlers are registered. Handlers can be registered
   // before the connection is started so callers may subscribe at any time.
@@ -17,6 +27,8 @@ export class TelemetrySignalrService {
     if (this.hubConnection) {
       return;
     }
+
+    console.log('Connection starting')
 
     this.hubConnection = new signalR.HubConnectionBuilder()
       // Use default negotiate flow so transport is chosen by the server/client.
@@ -30,16 +42,12 @@ export class TelemetrySignalrService {
 
     // Register handlers now so they're active as soon as the connection starts.
     this.hubConnection.on('LastTelemetry', (data: SensorTelemetry) => {
-      this.lastTelemetry$.next(data);
+      console.log(data);
+      this._lastTelemetry.set(data);
     });
 
     this.hubConnection.onclose((err?: Error) => {
       console.log('SignalR connection closed', err);
-      if (err) {
-        this.lastTelemetry$.error(err);
-      } else {
-        this.lastTelemetry$.complete();
-      }
     });
 
     this.hubConnection.onreconnecting((err?: Error) => {
@@ -69,8 +77,6 @@ export class TelemetrySignalrService {
       }
     } catch (err) {
       console.error('Error while starting SignalR connection: ', err);
-      // propagate error to subscribers so UI can react
-      this.lastTelemetry$.error(err as Error);
     }
   }
 
@@ -87,9 +93,8 @@ export class TelemetrySignalrService {
     }
   }
 
-  addLastTelemetryListener = (): Observable<SensorTelemetry> => {
+  addLastTelemetryListener = (): void => {
     // Ensure the connection and handlers exist even if the connection isn't started yet.
     this.ensureHubConnection();
-    return this.lastTelemetry$;
   }
 }
