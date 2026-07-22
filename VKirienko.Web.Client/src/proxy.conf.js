@@ -7,10 +7,14 @@ const PROXY_CONFIG = [
   {
     context: [
       "/api",
+      // proxy SignalR negotiate and websocket traffic to the ASP.NET backend during dev
+      "/telemetry",
+      "/telemetry/negotiate"
     ],
     proxyTimeout: 10000,
     target: target,
     secure: false,
+    ws: true,
     headers: {
       Connection: 'Keep-Alive'
     }
