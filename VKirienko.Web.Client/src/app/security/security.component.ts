@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 
@@ -6,7 +6,6 @@ import { SecurityReportUrl } from './security-report-url';
 
 @Component({
     selector: 'app-security',
-    changeDetection: ChangeDetectionStrategy.Eager,
     templateUrl: './security.component.html'
 })
 export class SecurityComponent {

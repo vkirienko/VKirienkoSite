@@ -1,5 +1,5 @@
 import { Location, PopStateEvent } from '@angular/common';
-import { AfterViewInit, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router, Event, RouterEvent, RouterOutlet } from '@angular/router';
 import PerfectScrollbar from 'perfect-scrollbar';
 import { filter } from 'rxjs/operators';
@@ -11,7 +11,6 @@ import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 @Component({
     selector: 'app-admin-layout',
     templateUrl: './admin-layout.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [SidebarComponent, NavbarComponent, RouterOutlet, FooterComponent]
 })
 export class AdminLayoutComponent implements OnInit, AfterViewInit {

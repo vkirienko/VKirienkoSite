@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -23,7 +23,6 @@ export const ROUTES: RouteInfo[] = [
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [RouterLink, RouterLinkActive]
 })
 export class SidebarComponent {

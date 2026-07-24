@@ -1,5 +1,5 @@
 import { DatePipe, DecimalPipe } from '@angular/common';
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Interpolation, LineChart, LineChartData, LineChartOptions } from 'chartist';
 
 import { SensorTelemetry } from './models/sensor-telemetry.model';
@@ -10,7 +10,6 @@ import { TelemetryService } from './services/telemetry.service';
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [DecimalPipe, DatePipe]
 })
 export class DashboardComponent implements OnInit, OnDestroy {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -7,7 +7,6 @@ import { environment } from '../../environments/environment';
 @Component({
     selector: 'app-flight-radar',
     templateUrl: './flight-radar.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatButtonModule]
 })
 export class FlightRadarComponent implements OnInit {

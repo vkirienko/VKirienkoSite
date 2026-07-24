@@ -1,10 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
     selector: 'app-contacts',
     templateUrl: './contacts.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [FontAwesomeModule]
 })
 export class ContactsComponent implements OnInit {

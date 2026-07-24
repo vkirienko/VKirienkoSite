@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -6,7 +6,6 @@ import { ROUTES, RouteInfo } from '../sidebar/sidebar.component';
 
 @Component({
     selector: 'app-navbar',
-    changeDetection: ChangeDetectionStrategy.Eager,
     templateUrl: './navbar.component.html'
 })
 export class NavbarComponent implements OnInit {

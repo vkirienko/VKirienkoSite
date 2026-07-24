@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -9,7 +9,6 @@ import { LoggingService } from './core/services/logging.service';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [RouterOutlet]
 })
 export class AppComponent {
