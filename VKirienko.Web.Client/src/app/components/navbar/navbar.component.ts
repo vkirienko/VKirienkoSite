@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, signal, computed, effect } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -16,9 +16,18 @@ export class NavbarComponent implements OnInit {
   private sidebarVisible: boolean;
   layer? : Element;
 
+  private currentPath = signal<string>('');
+  title = computed(() => this.getTitle(this.currentPath()));
+
   constructor(location: Location, private element: ElementRef, private router: Router) {
     this.location = location;
     this.sidebarVisible = false;
+
+    // Update currentPath signal on route changes
+    effect(() => {
+      const path = this.location.path();
+      this.currentPath.set(path);
+    });
   }
 
   ngOnInit(): void {
@@ -31,7 +40,12 @@ export class NavbarComponent implements OnInit {
         this.layer.remove();
         this.mobile_menu_visible = 0;
       }
+      // Update the current path signal when route changes
+      this.currentPath.set(this.location.path());
     });
+
+    // Initialize the current path
+    this.currentPath.set(this.location.path());
   }
 
   sidebarOpen(): void {
@@ -127,8 +141,8 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  getTitle(): string {
-    let titlee = this.location.prepareExternalUrl(this.location.path());
+  private getTitle(path: string): string {
+    let titlee = this.location.prepareExternalUrl(path);
     if (titlee.charAt(0) === '#') {
       titlee = titlee.slice(2);
     }
